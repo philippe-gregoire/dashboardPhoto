@@ -1,0 +1,59 @@
+.bootstrap-select > .dropdown-toggle {
+    width: 150px;
+    padding-right: 25px;
+    z-index: 1;
+}
+.dropdown-menu-dash {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    width: 130px;
+    max-width: 150px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: none  ;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-width: 150px;
+    width: 130px;
+}
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: none;
+    white-space: nowrap;
+}
+@media (min-width: 768px)
+.side-nav li a:hover, .side-nav li a:focus {
+    outline: none;
+    background-color: none!important; 
+}
+
+/*option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}*/
