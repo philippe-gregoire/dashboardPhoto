@@ -121,7 +121,7 @@ var RealtimeGraph = function(){
 		var behaviour = " Real Time";
 		var vbatMax = 100;
 		var efficiencyRef = 8;
-		var charging = false;
+		var charging = 1;
 		// sensors from I2C;
 		var duty = data.d['PWMDuty'];
 		var power = data.d['Pphoto'];
@@ -208,20 +208,20 @@ var RealtimeGraph = function(){
 			document.getElementById('efficiency').innerHTML = (power/efficiencyRef).toFixed(1)+" %";
 		}
 		if(document.getElementById('charging-img') != null){ //production page
-			if(charging==false){ // not charging
+			if(charging==0){ // not charging
 				document.getElementById('charging-img').style.display='none';
 				document.getElementById('discharging-img').style.display='block';
-			}else if(charging==true){ //charging
+			}else if(charging==1){ //charging
 				//Gif battery charging
 				document.getElementById('charging-img').style.display='block';
 				document.getElementById('discharging-img').style.display='none';
 			}
 			if(state_light=='1'){ //  lamp on
-				charging = false;
+				charging = 0;
 				document.getElementById('lamp').innerHTML = "Turned On";
 				document.getElementById('panel_light').style.backgroundColor="gold";
 			}else if(state_light=='0'){ //lamp off
-				charging = true;
+				charging = 1;
 				document.getElementById('lamp').innerHTML = "Turned Off";
 				document.getElementById('panel_light').style.backgroundColor="Gainsboro";
 			}
@@ -236,11 +236,11 @@ var RealtimeGraph = function(){
 			document.getElementById('power_s').innerHTML = (data.d['Power']/100).toFixed(1);
 		}*/
 		if(document.getElementById('state_low') != null){ //home page STATE
-			if(charging==true){ //charging on state home page
+			if(charging==1){ //charging on state home page
 				if(document.getElementById('state_charging') != null){
 					document.getElementById('state_charging').checked = true;
 				}
-			}else if(charging==false){
+			}else if(charging==0){
 				if(document.getElementById('state_charging') != null){
 					document.getElementById('state_charging').checked = false;
 				}
