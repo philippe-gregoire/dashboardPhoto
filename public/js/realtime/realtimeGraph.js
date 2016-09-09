@@ -123,15 +123,15 @@ var RealtimeGraph = function(){
 		var efficiencyRef = 8;
 		var charging = 1;
 		// sensors from I2C;
-		var duty = data.d['PWMDuty'];
-		var power = data.d['Pphoto'];
-		var vbat = data.d['Vbat'];
-		var state_light = data.d['state_light'];
-		var low_bat = data.d['lowBat'];
-		var device_temp = data.d['DieTemperature'];
-		var v_photo = data.d['Vphoto'];
-		var p_photo = data.d['Pphoto'];
-		var i_photo = data.d['Iphoto'];
+		var duty = data['PWMDuty'];
+		var power = data['Pphoto'];
+		var vbat = data['Vbat'];
+		var state_light = data['state_light'];
+		var low_bat = data['lowBat'];
+		var device_temp = data['DieTemperature'];
+		var v_photo = data['Vphoto'];
+		var p_photo = data['Pphoto'];
+		var i_photo = data['Iphoto'];
 		// other sensors
 		var loudSensor = null;
 		var lightSensor = null;
@@ -183,7 +183,7 @@ var RealtimeGraph = function(){
 				//document.getElementById('charge').innerHTML = ((((v_photo/1000))*100)/28).toFixed(1);
 				document.getElementById('charge').innerHTML = v_photo.toFixed(1);
 			}*/
-			
+			}
 			
 		}
 		if(document.getElementById('charge_perc') != null ){ // 
@@ -194,12 +194,12 @@ var RealtimeGraph = function(){
 			}else{
 				document.getElementById('charge_perc').innerHTML = (((vbat*100)/vbatMax)).toFixed(1)+" %";
 			}
-			/*if(((((data.d['Vbat']/1000))*100)/28).toFixed(1) > 100.0){
+			/*if(((((data['Vbat']/1000))*100)/28).toFixed(1) > 100.0){
 				document.getElementById('charge_perc').innerHTML = 100.0 +" %";
-			}else if(((((data.d['Vbat']/1000))*100)/28).toFixed(1) < 0.0){
+			}else if(((((data['Vbat']/1000))*100)/28).toFixed(1) < 0.0){
 				document.getElementById('charge_perc').innerHTML = 0.0 +" %";
 			}else{
-				document.getElementById('charge_perc').innerHTML = ((((data.d['Vbat']/1000))*100)/28).toFixed(1)+" %";
+				document.getElementById('charge_perc').innerHTML = ((((data['Vbat']/1000))*100)/28).toFixed(1)+" %";
 			}*/
 			
 			
@@ -233,7 +233,7 @@ var RealtimeGraph = function(){
 			document.getElementById('voltage').innerHTML = v_photo.toFixed(1);
 		}
 		/*if(document.getElementById('power_s') != null){
-			document.getElementById('power_s').innerHTML = (data.d['Power']/100).toFixed(1);
+			document.getElementById('power_s').innerHTML = (data['Power']/100).toFixed(1);
 		}*/
 		if(document.getElementById('state_low') != null){ //home page STATE
 			if(charging==1){ //charging on state home page
@@ -287,10 +287,10 @@ var RealtimeGraph = function(){
 			var seriesData = [];
 			var timestamp = Date.now()/1000;
 			var maxPoints = 25; 
-			for (var j in data.d)
+			for (var j in data)
 			{
-				if (typeof data.d[j] !== 'string') {
-					this.graph.series[key].data.push({x:timestamp,y:data.d[j]});
+				if (typeof data[j] !== 'string') {
+					this.graph.series[key].data.push({x:timestamp,y:data[j]});
 					if (this.graph.series[key].data.length > maxPoints)
 					{
 						this.graph.series[key].data.splice(0,1);//only display up to maxPoints
@@ -309,11 +309,11 @@ var RealtimeGraph = function(){
 			var seriesData = [];
 			var timestamp = Date.now()/1000;
 			var maxPoints = 25; 
-			for (var j in data.d)
+			for (var j in data)
 			{
-				if (typeof data.d[j] !== 'string') {
+				if (typeof data[j] !== 'string') {
 					if(j == 'Vbat'){
-						this.graph.series[key].data.push({x:timestamp,y:data.d[j]});
+						this.graph.series[key].data.push({x:timestamp,y:data[j]});
 						if (this.graph.series[key].data.length > maxPoints)
 						{
 							this.graph.series[key].data.splice(0,1);//only display up to maxPoints
@@ -330,12 +330,12 @@ var RealtimeGraph = function(){
 	this.updateGauge = function(data)
 	{
 		if(document.getElementById('gauge') != null){
-			for (var j in data.d)
+			for (var j in data)
 			{
-				if (typeof data.d[j] !== 'string') {
+				if (typeof data[j] !== 'string') {
 					if(j == 'Loudness'){
 						
-						needle.moveTo(data.d[j]);
+						needle.moveTo(data[j]);
 						break;
 					}
 				}
@@ -350,9 +350,9 @@ var RealtimeGraph = function(){
 			var key = 0;
 			var seriesData = [];
 			var timestamp = Date.now()/1000;
-			for (var j in data.d)
+			for (var j in data)
 			{	
-				if (typeof data.d[j] !== 'string') {
+				if (typeof data[j] !== 'string') {
 					seriesData[key]={};
 					seriesData[key].name=j;
 					seriesData[key].color = palette.color();
@@ -360,7 +360,7 @@ var RealtimeGraph = function(){
 
 					seriesData[key].data[0]={};
 					seriesData[key].data[0].x = timestamp;
-					seriesData[key].data[0].y = data.d[j];
+					seriesData[key].data[0].y = data[j];
 					key++;
 				}
 				
@@ -375,9 +375,9 @@ var RealtimeGraph = function(){
 			var key = 0;
 			var seriesData = [];
 			var timestamp = Date.now()/1000;
-			for (var j in data.d)
+			for (var j in data)
 			{
-				if (typeof data.d[j] !== 'string') {
+				if (typeof data[j] !== 'string') {
 					if(j == 'Vbat'){
 						seriesData[key]={};
 						seriesData[key].name=j;
@@ -386,7 +386,7 @@ var RealtimeGraph = function(){
 
 						seriesData[key].data[0]={};
 						seriesData[key].data[0].x = timestamp;
-						seriesData[key].data[0].y = (data.d[j]/1000)*3;
+						seriesData[key].data[0].y = (data[j]/1000)*3;
 						key++;
 					}
 					
@@ -396,6 +396,5 @@ var RealtimeGraph = function(){
 			this.drawGraph(seriesData);
 		}
 	}
-}
 };
 

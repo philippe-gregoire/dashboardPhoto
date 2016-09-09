@@ -112,12 +112,11 @@ app.use('/',index);
 
 app.use(function(req, res, next) {
     if(req.session.api_key){
-        console.log("OK apikey");
+        //console.log("OK apikey");
         res.redirect("/dashboard");
     }   
     else{
         console.log("error apikey");
-        //res.redirect("/");
     }
         
 });

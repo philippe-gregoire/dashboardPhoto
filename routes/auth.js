@@ -10,7 +10,7 @@
 var express = require('express');
 var router = express.Router();
 
-console.log("in auth ");
+
 
 router.post('/login', function(req, res) {
   

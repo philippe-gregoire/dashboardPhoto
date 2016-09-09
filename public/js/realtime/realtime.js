@@ -9,15 +9,22 @@
 
 var subscribeTopic = "";
 
-var Realtime = function(orgId, api_key, auth_token, _simulstate, deviceId) {
-	console.log("simul" + _simulstate);
 
+var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
+	console.log("simul: " + _simulstate);
+	var hostname;
+	if(_simulstate == "realtime"){
+		var tabInfos = orgInfos.split(':');
+		var orgId = tabInfos[1];
+		var clientId="a:"+orgId+":" +Date.now();
+
+		console.log("clientId: " + clientId);
+		var hostname = orgId+".messaging.internetofthings.ibmcloud.com";
+	}
+	
 	var firstMessage = true;
 
-	var clientId="a:"+orgId+":" +Date.now();
-
-	console.log("clientId: " + clientId);
-	var hostname = orgId+".messaging.internetofthings.ibmcloud.com";
+	
 	var client;
 	function startSimul(_simulstate) {
 		if (_simulstate == "day"){
@@ -142,15 +149,16 @@ var Realtime = function(orgId, api_key, auth_token, _simulstate, deviceId) {
 		} else{
 			console.log("Error, simulation state undifined");
 		}	
-			
+		return;	
 	}
 	this.initialize = function(){
 
-		client = new Messaging.Client(hostname, 8883,clientId);
-
-		// Initialize the Realtime Graph
-		var rtGraph = new RealtimeGraph();
+		
 		if(_simulstate == "realtime"){
+			client = new Messaging.Client(hostname, 8883,clientId);
+			// Initialize the Realtime Graph
+			var rtGraph = new RealtimeGraph();
+
 			client.onMessageArrived = function(msg) {
 				var topic = msg.destinationName;
 				console.log("topic2: " + topic);
@@ -179,27 +187,30 @@ var Realtime = function(orgId, api_key, auth_token, _simulstate, deviceId) {
 			startSimul(_simulstate);
 		}
 		
+		if(_simulstate == "realtime"){
 
-		client.onConnectionLost = function(e){
-			console.log("Connection Lost at " + Date.now() + " : " + e.errorCode + " : " + e.errorMessage);
-			this.connect(connectOptions);
+
+			client.onConnectionLost = function(e){
+				console.log("Connection Lost at " + Date.now() + " : " + e.errorCode + " : " + e.errorMessage);
+				this.connect(connectOptions);
+			}
+
+			var connectOptions = new Object();
+			connectOptions.keepAliveInterval = 3600;
+			connectOptions.useSSL=true;
+			connectOptions.userName=api_key;
+			connectOptions.password=auth_token;
+			connectOptions.onSuccess = function() {
+				console.log("MQTT connected to host: "+client.host+" port : "+client.port+" at " + Date.now());
+			}
+
+			connectOptions.onFailure = function(e) {
+				console.log("MQTT connection failed at " + Date.now() + "\nerror: " + e.errorCode + " : " + e.errorMessage);
+			}
+
+			console.log("about to connect to " + client.host);
+			client.connect(connectOptions);
 		}
-
-		var connectOptions = new Object();
-		connectOptions.keepAliveInterval = 3600;
-		connectOptions.useSSL=true;
-		connectOptions.userName=api_key;
-		connectOptions.password=auth_token;
-		connectOptions.onSuccess = function() {
-			console.log("MQTT connected to host: "+client.host+" port : "+client.port+" at " + Date.now());
-		}
-
-		connectOptions.onFailure = function(e) {
-			console.log("MQTT connection failed at " + Date.now() + "\nerror: " + e.errorCode + " : " + e.errorMessage);
-		}
-
-		console.log("about to connect to " + client.host);
-		client.connect(connectOptions);
 
 	}
 
@@ -216,9 +227,9 @@ var Realtime = function(orgId, api_key, auth_token, _simulstate, deviceId) {
 			}
 		};
 		
-		var item = deviceId;
-		console.log(item);
-		var tokens = item.split(':');
+
+		console.log(orgInfos);
+		var tokens = orgInfos.split(':');
 		if(subscribeTopic != "") {
 			console.log("Unsubscribing to " + subscribeTopic);
 			client.unsubscribe(subscribeTopic);
@@ -239,9 +250,26 @@ var Realtime = function(orgId, api_key, auth_token, _simulstate, deviceId) {
 		subscribeTopic = "iot-2/type/" + tokens[2] + "/id/" + tokens[3] + "/evt/+/fmt/json";
 		console.log("topic: " + subscribeTopic)
 		client.subscribe(subscribeTopic,subscribeOptions);
-	}
+	};
 
 	this.initialize();
 
 	var imageHTML = '<div class="iotdashboardtext">The selected device is not currently sending events to the Internet of Things Foundation</div><br><div class="iotdashboardtext">Select to view historical data or select a different device.</div> <img class="iotimagesMiddle" align="middle" alt="Chart" src="images/IOT_Icons_Thing02.svg">';
 }
+
+function init(){
+	
+	//var paramsTab = decodeURIComponent(location.search).split('&');
+	var apiKey = localStorage.getItem("api_key");
+	var apiToken = localStorage.getItem("auth_token");
+	var state = localStorage.getItem("simulstate");
+	var deviceId = localStorage.getItem("deviceId");
+	if(state == "realtime"){
+		var realtime = new Realtime(apiKey, apiToken, state, deviceId );
+		realtime.plotRealtimeGraph();
+	} else{
+		var realtime = new Realtime(apiKey, apiToken, state, deviceId );
+	}
+	
+}
+init();

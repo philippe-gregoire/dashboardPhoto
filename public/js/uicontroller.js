@@ -21,7 +21,7 @@ var realtime;
 var simulstate ="realtime";
 
 var selectedDevice="";
-
+var photocontrollerList = [];
 
 //load the state : simulation day or simulation night or real time data
 function loadData() {
@@ -36,15 +36,7 @@ function loadData() {
    
    return true;
 }
-function onDeviceChanged(){
-	selectedDevice =$("#deviceslist").val();
-	if(selectedDevice != ""){
-		$("[name='realtime-switch']").bootstrapSwitch('toggleDisabled',false,true);
-	}else{
-		$("[name='realtime-switch']").bootstrapSwitch('toggleDisabled',true,true);
-	}
-	console.log(selectedDevice);
-}
+
 
 
 
@@ -71,7 +63,7 @@ $.ajax
 
 	},
 	error: function (xhr, ajaxOptions, thrownError) {
-		if(xhr.status === 401 || xhr.status === 403 || xhr.status === 500){
+		if(xhr.status === 401 || xhr.status === 403){
 			console.log("Not authorized. Check your Api Key and Auth token");
 			window.location.href="loginfail";
 		}
@@ -94,11 +86,16 @@ $.ajax
 	success: function (data, status, jq){
 
 		devices = data;
-		size = devices.length;
-		console.log(data);
 		for(var d in devices){
-			$("#deviceslist").append("<option value="+devices[d].clientId+">"+devices[d].deviceId+"</option>");
+			if(devices[d].metadata != null){
+				photocontrollerList.push(devices[d])
+				if((devices[d].metadata.lat != null) && (devices[d].metadata.lon != null)){
+					addDynamicMArker(devices[d]);
+				}
+			}
 		}
+		
+		
 		
 	},
 	error: function (xhr, ajaxOptions, thrownError) {
@@ -108,6 +105,27 @@ $.ajax
 });
 
 loadData();
-realtime = new Realtime(orgId, api_key, auth_token, simulstate, selectedDevice);
+
+function storeInfos(id, state){
+	deviceId = id;
+	if(state == null){
+		state = localStorage.getItem("_simulstate");
+	}
+	simulstate = state;
+	// Check browser support
+	if (typeof(Storage) !== "undefined") {
+	    // Store
+	    localStorage.setItem("api_key", api_key);
+	    localStorage.setItem("auth_token", auth_token);
+	    localStorage.setItem("simulstate", simulstate);
+	    localStorage.setItem("deviceId", deviceId);
+
+	} else {
+	    window.alert("Browser does not support this app version");
+	}
+
+	window.location = 'home.html';
+}
+
 
 

@@ -42,27 +42,7 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <!--<li>
-                    <a href="info.html" class="page-scroll" >Infos</a>
-                </li>-->
-                <li>
-                    <a class="page-scroll" >Traffic: 25000 p</a>
-                </li>
-                <li>
-                    <a class="page-scroll" >Energy: 20W</a>
-                </li>
-                <li>
-                    <a class="page-scroll" >AQI: 10 (O3), 36 (CO), 19 (PM25), 12 (PM10)</a>
-                </li>
-                <li>
-                    <a class="page-scroll" > </a>
-                </li>
-            </ul>
+            
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
              <ul class="nav navbar-nav side-nav">
@@ -74,12 +54,12 @@
                                 <h6><b>API Key:</b></h6><div id="apikeyDisplay"></div>
                                 <h6><b>Org id: </b></h6><div id="orgDisplay"></div>
                                 
-                                <div class="devices">
+                                <!--<div class="devices">
                                     <h6><b>Devices: </b></h6>
                                     <select id="deviceslist" onchange="onDeviceChanged()" class=" devicesSelect">
                                         <option value="">Select a device</option>
                                     </select>
-                                </div>
+                                </div>-->
                                 </br>
                                 <div class="wrapper ">
                                     <span class="group-btn">     
@@ -90,9 +70,9 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <!--<li>
                     <a><i class="fa fa-fw fa-dashboard"></i> Real time <input id="realtimeswitsh" data-switch-set="state" data-switch-value="true" id="rt" name="realtime-switch" type="checkbox" unchecked data-size="mini"> </a>
-                </li>
+                </li>-->
                 <li>
                     <a><i class="fa fa-fw fa-arrows-v"></i> Simul Night <input id="sn" type="checkbox" name="night_switch" unchecked data-size="mini"></a>
                 <li>
@@ -113,26 +93,19 @@
     <script type= "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap-select.js"></script>
 
-    <script type= "text/javascript" src="js/realtime/realtime.js"></script>
-    <script type= "text/javascript" src="js/realtime/realtimeGraph.js"></script>
     
     <script src="js/bootstrap.min.js"></script>
     
     <script src="js/bootstrap-switch.js"></script>
     
-    
     <script type= "text/javascript" src="js/general.js"></script>
-    <script type= "text/javascript" src="js/connected.js"></script>
+
     
    <script type= "text/javascript" src="js/d3/d3.v3.js"></script>
     <script type= "text/javascript" src="js/rickshaw/rickshaw.min.js"></script>
     
     <script type= "text/javascript" src="js/jquery.datetimepicker.min.js"></script>
     <script type= "text/javascript" src="js/rickshaw/extensions.js"></script>
-    <script type= "text/javascript" src="js/realtime/mqttws31.js"></script>
-    
-    <script type= "text/javascript" src="js/historian/historian.js"></script>
-    <script type= "text/javascript" src="js/historian/historianGraph.js"></script>
     <script type= "text/javascript" src="js/uicontroller.js"></script>
 
 

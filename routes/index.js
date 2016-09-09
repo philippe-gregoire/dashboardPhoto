@@ -23,13 +23,12 @@ router.use(function(req, res, next) {
 
 	//set this header, so that there is no browser caching when destroying the session.
 	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-	console.log("Session apikey from index : "+req.session.api_key);
-   	console.log("Session token from index : "+req.session.auth_token);
+
 	//check to see if we are in Bluemix and if we are bound to IoT service	
 	
 	if (! req.session.api_key && process.env.VCAP_SERVICES && req.path.indexOf('login') === -1)
 	{
-		console.log("in login js IF ");
+		
 		var keys = getAuthFromVCAP(process.env.VCAP_SERVICES);
 		if( keys.api_key) {
 			//found IoTF service, so set the api key and auth token

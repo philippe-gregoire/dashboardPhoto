@@ -1,21 +1,30 @@
+/*******************************************************************************
+* Copyright (c) 2016 IBM Corporation and other Contributors.
+*
+* All rights reserved. 
+*
+* Contributors: CLEMENCE LEBRUN
+* IBM - Initial Contribution
+*******************************************************************************/
+var markerMalaga;
+var markerDublin;
+var markerNY;
+var markerVegas;
+var markerMoscow;
 
-var markerMirage;
-var markerBellagio;
-var markerHarley;
-var markerSign;
-var markerMandalay;
 var imageLightOn;
 var imageLightOff;
-var simulstate ="realtime";
+var simulstate =null;
+var map;
 
 var initMap = function(){
   
-  var myLatLngCenter = {lat: 36.100774, lng: -115.173149};
-  var myLatLngMirage = {lat: 36.121410, lng: -115.172102};
-  var myLatLngBellagio = {lat: 36.112566, lng: -115.173068};
-  var myLatLngMandalay = {lat: 36.0906428, lng: -115.1812648};
-  var myLatLngSign = {lat: 36.081750, lng: -115.172532};
-  var myLatLngHarley = {lat: 36.107802, lng: -115.172729};
+  var myLatLngCenter = {lat: 41.121054, lng: -30.763709};
+  var myLatLngMalaga = {lat: 36.7213, lng: -4.4214};
+  var myLatLngDublin = {lat: 53.3498, lng: -6.2603};
+  var myLatLngVegas = {lat: 36.0906428, lng: -115.1812648};
+  var myLatLngNY = {lat: 40.7128, lng: -74.0059};
+  var myLatLngMoscow = {lat: 55.7558, lng: 37.6173};
 
   imageLightOn = new google.maps.MarkerImage(
     'images/light.png', 
@@ -33,31 +42,39 @@ var initMap = function(){
     new google.maps.Size(25, 25) // size
   );
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
+  imageLightRealtime = new google.maps.MarkerImage(
+    'images/light_realtime.png', 
+    null,
+    null,
+    null,
+    new google.maps.Size(25, 25) // size
+  );
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 3,
     center: myLatLngCenter
   });
 
 
-  // mirage
-  markerMirage = new google.maps.Marker({
-    position: myLatLngMirage,
+  // Malaga Simul
+  markerMalaga = new google.maps.Marker({
+    position: myLatLngMalaga,
     icon: imageLightOn,
     map: map,
-    title: 'Mirage Connected Lamp'
+    title: 'Malaga Connected Lamp'
   });
-  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">Mirage Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Lamp type: </b>LED</p><p><b>Solar panel: </b>8 W</p></div></div>';
+  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">Malaga Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null + ')">DASHBOARD</button></p></div></div>';
 
   var infoWindowM = new google.maps.InfoWindow({
       content: contentStringM
   });
-  markerMirage.addListener('click', function() {
-    infoWindowM.open(map, markerMirage);
+  markerMalaga.addListener('click', function() {
+    infoWindowM.open(map, markerMalaga);
     var pano = null;
     google.maps.event.addListener(infoWindowM, 'domready', function () {
     
       pano = new google.maps.StreetViewPanorama(document.getElementById("street"), {
-        position: myLatLngMirage,
+        position: myLatLngMalaga,
         zoomControl: false,
         enableCloseButton: false,
         addressControl: false,
@@ -67,26 +84,26 @@ var initMap = function(){
     });
   });
 
-  // Bellagio
-  markerBellagio = new google.maps.Marker({
-    position: myLatLngBellagio,
+  // Dublin
+  markerDublin = new google.maps.Marker({
+    position: myLatLngDublin,
     icon: imageLightOn,
     map: map,
-    title: 'Bellagio Connected Lamp'
+    title: 'Dublin Connected Lamp'
   });
 
-  var contentStringB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Bellagio Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Lamp type: </b>LED</p><p><b>Solar panel: </b>8 W</p></div></div>';
+  var contentStringB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Dublin Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null + ')">DASHBOARD</button></p></div></div>';
 
   var infoWindowB = new google.maps.InfoWindow({
       content: contentStringB
   });
-  markerBellagio.addListener('click', function() {
-    infoWindowB.open(map, markerBellagio);
+  markerDublin.addListener('click', function() {
+    infoWindowB.open(map, markerDublin);
     var pano = null;
     google.maps.event.addListener(infoWindowB, 'domready', function () {
     
       pano = new google.maps.StreetViewPanorama(document.getElementById("street"), {
-        position: myLatLngBellagio,
+        position: myLatLngDublin,
         zoomControl: false,
         enableCloseButton: false,
         addressControl: false,
@@ -96,25 +113,25 @@ var initMap = function(){
     });
   });
 
-  // Mandalay
-  markerMandalay = new google.maps.Marker({
-    position: myLatLngMandalay,
+  // New-York
+  markerNY = new google.maps.Marker({
+    position: myLatLngNY,
     icon: imageLightOn,
     map: map,
-    title: 'Mandalay bay EXPO Connected Lamp'
+    title: 'New-York Connected Lamp'
   });
-  var contentStringMB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Mandalay Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Lamp type: </b>LED</p><p><b>Solar panel: </b>8 W</p><p><a href="home.html">DETAILS</a></p></div></div>';
+  var contentStringMB = '<div id="content"><h4 id="firstHeading" class="firstHeading">New-York Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null + ')">DASHBOARD</button></p></div></div>';
 
   var infoWindowMB = new google.maps.InfoWindow({
       content: contentStringMB
   });
-  markerMandalay.addListener('click', function() {
-    infoWindowMB.open(map, markerMandalay);
+  markerNY.addListener('click', function() {
+    infoWindowMB.open(map, markerNY);
     var pano = null;
     google.maps.event.addListener(infoWindowMB, 'domready', function () {
     
       pano = new google.maps.StreetViewPanorama(document.getElementById("street"), {
-        position: myLatLngMandalay,
+        position: myLatLngNY,
         zoomControl: false,
         enableCloseButton: false,
         addressControl: false,
@@ -124,25 +141,26 @@ var initMap = function(){
     });
   });
 
-  //Sign
-  markerSign = new google.maps.Marker({
-    position: myLatLngSign,
+  //Moscow
+  markerMoscow = new google.maps.Marker({
+    position: myLatLngMoscow,
     icon: imageLightOn,
     map: map,
-    title: 'Sign Connected Lamp'
+    title: 'Moscow Connected Lamp'
   });
-  var contentStringS = '<div id="content"><h4 id="firstHeading" class="firstHeading">Sign Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Lamp type: </b>LED</p><p><b>Solar panel: </b>8 W</p></div></div>';
+
+  var contentStringS = '<div id="content"><h4 id="firstHeading" class="firstHeading">Moscow Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null + ')">DASHBOARD</button></p></div></div>';
 
   var infoWindowS = new google.maps.InfoWindow({
       content: contentStringS
   });
-  markerSign.addListener('click', function() {
-    infoWindowS.open(map, markerSign);
+  markerMoscow.addListener('click', function() {
+    infoWindowS.open(map, markerMoscow);
     var pano = null;
     google.maps.event.addListener(infoWindowS, 'domready', function () {
     
       pano = new google.maps.StreetViewPanorama(document.getElementById("street"), {
-        position: myLatLngSign,
+        position: myLatLngMoscow,
         zoomControl: false,
         enableCloseButton: false,
         addressControl: false,
@@ -152,33 +170,7 @@ var initMap = function(){
     });
   });
 
-  //Harley
-  markerHarley = new google.maps.Marker({
-    position: myLatLngHarley,
-    icon: imageLightOn,
-    map: map,
-    title: 'Harley-Davidson Café Connected Lamp'
-  });
-  var contentStringH = '<div id="content"><h4 id="firstHeading" class="firstHeading">Harley-Davidson Café Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Lamp type: </b>LED</p><p><b>Solar panel: </b>8 W</p></div></div>';
-
-  var infoWindowH = new google.maps.InfoWindow({
-      content: contentStringH
-  });
-  markerHarley.addListener('click', function() {
-    infoWindowH.open(map, markerHarley);
-    var pano = null;
-    google.maps.event.addListener(infoWindowH, 'domready', function () {
-    
-      pano = new google.maps.StreetViewPanorama(document.getElementById("street"), {
-        position: myLatLngHarley,
-        zoomControl: false,
-        enableCloseButton: false,
-        addressControl: false,
-        panControl: false,
-        linksControl: false
-      });
-    });
-  });
+  
   setAllMarkerInVisible();
   
 
@@ -231,34 +223,30 @@ $('input[name="realtime-switch"]').on('switchChange.bootstrapSwitch', function(e
 });
 
 setAllMarkerVisible = function(){
-  markerMirage.setVisible(true);
-  markerBellagio.setVisible(true);
-  markerMandalay.setVisible(true);
-  markerSign.setVisible(true);
-  markerHarley.setVisible(true);
+  markerMalaga.setVisible(true);
+  markerDublin.setVisible(true);
+  markerNY.setVisible(true);
+  markerMoscow.setVisible(true);
 
 }
 setAllMarkerInVisible = function(){
-  markerMirage.setVisible(false);
-  markerBellagio.setVisible(false);
-  markerMandalay.setVisible(false);
-  markerSign.setVisible(false);
-  markerHarley.setVisible(false);
+  markerMalaga.setVisible(false);
+  markerDublin.setVisible(false);
+  markerNY.setVisible(false);
+  markerMoscow.setVisible(false);
 
 }
 setAllLightOn = function(){
-  markerMirage.setIcon(imageLightOn);
-  markerBellagio.setIcon(imageLightOn);
-  markerMandalay.setIcon(imageLightOn);
-  markerSign.setIcon(imageLightOn);
-  markerHarley.setIcon(imageLightOn);
+  markerMalaga.setIcon(imageLightOn);
+  markerDublin.setIcon(imageLightOn);
+  markerNY.setIcon(imageLightOn);
+  markerMoscow.setIcon(imageLightOn);
 }
 setAllLightOff = function(){
-  markerMirage.setIcon(imageLightOff);
-  markerBellagio.setIcon(imageLightOff);
-  markerMandalay.setIcon(imageLightOff);
-  markerSign.setIcon(imageLightOff);
-  markerHarley.setIcon(imageLightOff);
+  markerMalaga.setIcon(imageLightOff);
+  markerDublin.setIcon(imageLightOff);
+  markerMoscow.setIcon(imageLightOff);
+  markerNY.setIcon(imageLightOff);
 }
 if(document.getElementById("bt") != null){
   document.getElementById("bt").addEventListener("click", function(){
@@ -269,22 +257,20 @@ if(document.getElementById("bt") != null){
 
 function setState(){
   
-  if($('input[name="realtime-switch"]').bootstrapSwitch('state') == true){
-    simulstate = "realtime";
-  } else if($('input[name="day_switch"]').bootstrapSwitch('state') == true){
+  if($('input[name="day_switch"]').bootstrapSwitch('state') == true){
     simulstate = "day";
   }else if($('input[name="night_switch"]').bootstrapSwitch('state') == true){
     simulstate = "night";
   } else {
-    simulstate = "nothing";
+    simulstate = null;
   } 
 } 
+
 function saveState() {
   if(typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
     var state = simulstate;
-   //converts to JSON string the Object
-   state = JSON.stringify(state);
+
    
    //save the encoded accout to web storage
    localStorage.setItem('_simulstate', state);
@@ -294,5 +280,43 @@ function saveState() {
   }
   
 }
+function addDynamicMArker(device) {
+  var lat = device.metadata.lat;
+  var lon = device.metadata.lon;
+  var deviceId = device.clientId;
+  var deviceTitle = device.deviceInfo.descriptiveLocation;
+  var deviceManufacturer = device.deviceInfo.manufacturer;
+  var deviceModel = device.deviceInfo.model;
+  var deviceDesc = device.deviceInfo.description;
+  var dynamicCoor = {lat: lat, lng: lon};
+  // mirage
+  var dynamicMarker = new google.maps.Marker({
+    position: dynamicCoor,
+    icon: imageLightRealtime,
+    map: map,
+    title: deviceTitle
+  });
+  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">'+deviceTitle+'</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>'+deviceDesc+'</p><p><b>Manufacturer: </b>'+deviceManufacturer+'</p><p><b>Mode: </b>Real-time</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceId + '\', \'' + "realtime" + '\')">DASHBOARD</button></p></div></div>';
+
+  var infoWindowM = new google.maps.InfoWindow({
+      content: contentStringM
+  });
+  dynamicMarker.addListener('click', function() {
+    infoWindowM.open(map, dynamicMarker);
+    var pano = null;
+    google.maps.event.addListener(infoWindowM, 'domready', function () {
+    
+      pano = new google.maps.StreetViewPanorama(document.getElementById("street"), {
+        position: dynamicCoor,
+        zoomControl: false,
+        enableCloseButton: false,
+        addressControl: false,
+        panControl: false,
+        linksControl: false
+      });
+    });
+  });
+}
+
 
 
