@@ -1,21 +1,26 @@
-Deploy a Real-time IoT dashboard application (Node.js app) on Bluemix.
+====================================
+Deploy the admin dashboard photocontroller V2 (Node.js app) on Bluemix.
 ====================================
 
 1. Connect to Bluemix:
     https://console.ng.bluemix.net
-    Create a new Javascript web app on Bluemix:
-    On the dashboard, click on "Create App"
-    Choose "Web" app
-    Choose the "SDK for Node.js" runtime
-    Click "Continue"
-    Give your application a name (it has to be unique)
-    Wait for your application to be started
-    Add the Weather Company Data for IBM service, restage.
+    Create a new node.js web app on Bluemix:
+        On the dashboard, click on "Create App"
+        Choose "Web" app
+        Choose the "SDK for Node.js" runtime
+        Click "Continue"
+        Give your application a name (it has to be unique)
+        Wait for your application to be started
+        Add the Weather Company Data for IBM service, restage.
     
 2. Download the project from Git:
-- Browse https://github.com/cllebrun/dashboardAdminInsight
+- Browse https://github.com/cllebrun/dashboardPhoto.git
+
 - Click on "Download ZIP" on the right of the page
 - Unzip the folder
+or
+- clone the project
+
 - Open the folder and the "manifest.yml" file and edit it to change the name and the host with the name you gave to the application you created on Bluemix.
 
 3. Push the app to Bluemix
@@ -38,11 +43,19 @@ Deploy a Real-time IoT dashboard application (Node.js app) on Bluemix.
     Visualize the data from the Urban Light data on your real-time dashbord app !
 
 
- 
+ Register your photocontroller device into our org and use the app
+ or
+ Register your photocontroller device into your org and customize the app before using it 
 
 
-==================
-How to customize the app:
+
+====================================
+How to customize the app for your IoT org:
+====================================
+
+====================================
+Other Customization:
+====================================
 
 #### Realtime data: 
 
