@@ -158,7 +158,7 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 			client = new Messaging.Client(hostname, 8883,clientId);
 			// Initialize the Realtime Graph
 			var rtGraph = new RealtimeGraph();
-
+			updateVal();
 			client.onMessageArrived = function(msg) {
 				var topic = msg.destinationName;
 				console.log("topic2: " + topic);
@@ -177,7 +177,9 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 			    	rtGraph.graphDataCharge(payload);
 
 			    }
-			    rtGraph.updateVal(payload);
+			    rtGraph.updateLocalStorage(payload);
+			    updateVal();
+
 			    rtGraph.updateGauge(payload);
 			    //rtGraph.updateJoystick(payload);
 			    

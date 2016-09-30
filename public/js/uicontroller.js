@@ -106,8 +106,9 @@ $.ajax
 
 loadData();
 
-function storeInfos(id, state){
+function storeInfos(id, state, coor, name){
 	deviceId = id;
+
 	if(state == null){
 		state = localStorage.getItem("_simulstate");
 	}
@@ -119,6 +120,9 @@ function storeInfos(id, state){
 	    localStorage.setItem("auth_token", auth_token);
 	    localStorage.setItem("simulstate", simulstate);
 	    localStorage.setItem("deviceId", deviceId);
+	    localStorage.setItem("location", coor);
+	    localStorage.setItem("name", name);
+
 
 	} else {
 	    window.alert("Browser does not support this app version");
