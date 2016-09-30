@@ -120,7 +120,7 @@ var RealtimeGraph = function(){
 	{
 		var behaviour = " Real Time";
 		var vbatMax = 100;
-		var efficiencyRef = 8;
+		var efficiencyRef = 20;
 		var charging = 1;
 		// sensors from I2C;
 		var duty = data['PWMDuty'];
