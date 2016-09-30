@@ -388,7 +388,10 @@ function outHour(ele) {
 //-- event handlers
 
 //var defaultGeo = "45.43,-75.68"; // Ottawaw
-var defaultGeo = "36.1215,-115.1739"; //vegas
+var lat = localStorage.getItem("location_lat");
+var lon = localStorage.getItem("location_lon");
+//var lon = localStorage.getItem("coor").lon;
+var defaultGeo = lat+','+lon;//"36.1215,-115.1739"; //vegas
 
 
 function addGeocode(label, geocode) {

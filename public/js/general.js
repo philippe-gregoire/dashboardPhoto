@@ -64,7 +64,9 @@ var initMap = function(){
     title: 'Malaga Connected Lamp'
   });
   var nameMalaga = 'Malaga Connected Lamp';
-  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">Malaga Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + myLatLngMalaga + '\', \'' + nameMalaga + '\')">DASHBOARD</button></p></div></div>';
+  var lat_malaga = myLatLngMalaga.lat;
+  var lon_malaga = myLatLngMalaga.lng;
+  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">Malaga Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_malaga+ '\', \'' + lon_malaga + '\', \'' + nameMalaga + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowM = new google.maps.InfoWindow({
       content: contentStringM
@@ -93,7 +95,9 @@ var initMap = function(){
     title: 'Dublin Connected Lamp'
   });
   var nameDublin = 'Dublin Connected Lamp';
-  var contentStringB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Dublin Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + myLatLngDublin + '\', \'' + nameDublin + '\')">DASHBOARD</button></p></div></div>';
+  var lat_dublin = myLatLngDublin.lat;
+  var lon_dublin = myLatLngDublin.lng;
+  var contentStringB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Dublin Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_dublin+ '\', \'' + lon_dublin + '\', \'' + nameDublin + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowB = new google.maps.InfoWindow({
       content: contentStringB
@@ -122,7 +126,9 @@ var initMap = function(){
     title: 'New-York Connected Lamp'
   });
   var nameNewYork= 'New-York Connected Lamp';
-  var contentStringMB = '<div id="content"><h4 id="firstHeading" class="firstHeading">New-York Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + myLatLngNY + '\', \'' + nameNewYork + '\')">DASHBOARD</button></p></div></div>';
+  var lat_ny = myLatLngNY.lat;
+  var lon_ny = myLatLngNY.lng;
+  var contentStringMB = '<div id="content"><h4 id="firstHeading" class="firstHeading">New-York Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_ny+ '\', \'' + lon_ny + '\', \'' + '\', \'' + nameNewYork + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowMB = new google.maps.InfoWindow({
       content: contentStringMB
@@ -151,7 +157,9 @@ var initMap = function(){
     title: 'Moscow Connected Lamp'
   });
   var nameMoscow = 'Moscow Connected Lamp';
-  var contentStringS = '<div id="content"><h4 id="firstHeading" class="firstHeading">Moscow Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + myLatLngMoscow + '\', \'' + nameMoscow + '\')">DASHBOARD</button></p></div></div>';
+  var lat_moscow = myLatLngMoscow.lat;
+  var lon_moscow = myLatLngMoscow.lng;
+  var contentStringS = '<div id="content"><h4 id="firstHeading" class="firstHeading">Moscow Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_moscow+ '\', \'' + lon_moscow + '\', \'' + nameMoscow + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowS = new google.maps.InfoWindow({
       content: contentStringS
@@ -298,7 +306,7 @@ function addDynamicMArker(device) {
     map: map,
     title: deviceTitle
   });
-  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">'+deviceTitle+'</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>'+deviceDesc+'</p><p><b>Manufacturer: </b>'+deviceManufacturer+'</p><p><b>Mode: </b>Real-time</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceId + '\', \'' + "realtime" + '\', \'' + dynamicCoor + '\', \'' + deviceTitle + '\')">DASHBOARD</button></p></div></div>';
+  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">'+deviceTitle+'</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>'+deviceDesc+'</p><p><b>Manufacturer: </b>'+deviceManufacturer+'</p><p><b>Mode: </b>Real-time</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceId + '\', \'' + "realtime" + '\', \'' + lat+ '\', \'' + lon + '\', \'' + deviceTitle + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowM = new google.maps.InfoWindow({
       content: contentStringM

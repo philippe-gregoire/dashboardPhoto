@@ -29,7 +29,7 @@ function loadData() {
 	if (!state) return false;
    //localStorage.removeItem('_simulstate');
    	//parses to Object the JSON string
-   state = JSON.parse(state);
+   //state = JSON.parse(state);
 	//do what you need with the Object
    console.log(state);
    simulstate = state;
@@ -106,13 +106,14 @@ $.ajax
 
 loadData();
 
-function storeInfos(id, state, coor, name){
+function storeInfos(id, state, lat,lon, name){
 	deviceId = id;
 
 	if(state == null){
 		state = localStorage.getItem("_simulstate");
 	}
 	simulstate = state;
+	
 	// Check browser support
 	if (typeof(Storage) !== "undefined") {
 	    // Store
@@ -120,7 +121,8 @@ function storeInfos(id, state, coor, name){
 	    localStorage.setItem("auth_token", auth_token);
 	    localStorage.setItem("simulstate", simulstate);
 	    localStorage.setItem("deviceId", deviceId);
-	    localStorage.setItem("location", coor);
+	    localStorage.setItem("location_lat", lat);
+	    localStorage.setItem("location_lon", lon);
 	    localStorage.setItem("name", name);
 
 
