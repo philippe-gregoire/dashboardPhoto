@@ -61,7 +61,7 @@ Other Customization:
 
 FORMAT sent by your connected street light V2 device: 
 
-{ "topic": "iot-2/type/PhotocontrollerV2/id/b827eb892163/evt/status/fmt/json", "payload": { "PWMFreqDiv": 0, "PWMMode": 0, "PWMDuty": 0, "state_light": 0, "lowBat": 0, "BProtary": 0, "Vbat": 36073, "Vphoto": 2542, "Iphoto": 0, "Pphoto": 0, "DieTemperature": 27, "nuit": 0 }, "deviceId": "b827eb892163", "deviceType": "PhotocontrollerV2", "eventType": "status", "format": "json", "_msgid": "57ebc7d3.a81438" }
+        { "topic": "iot-2/type/PhotocontrollerV2/id/b827eb892163/evt/status/fmt/json", "payload": { "PWMFreqDiv": 0, "PWMMode": 0, "PWMDuty": 0, "state_light": 0, "lowBat": 0, "BProtary": 0, "Vbat": 36073, "Vphoto": 2542, "Iphoto": 0, "Pphoto": 0, "DieTemperature": 27, "nuit": 0 }, "deviceId": "b827eb892163", "deviceType": "PhotocontrollerV2", "eventType": "status", "format": "json", "_msgid": "57ebc7d3.a81438" }
 
 Data parsed in the app in public > js > realtime > realtimeGraph()
 Simulation data in :
