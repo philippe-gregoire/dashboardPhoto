@@ -19,9 +19,10 @@ var devices = [];
 var opt = [];
 var realtime;
 var simulstate ="realtime";
-
+var client;
 var selectedDevice="";
 var photocontrollerList = [];
+var client;
 
 //load the state : simulation day or simulation night or real time data
 function loadData() {
@@ -31,7 +32,7 @@ function loadData() {
    	//parses to Object the JSON string
    //state = JSON.parse(state);
 	//do what you need with the Object
-   console.log(state);
+   //console.log(state);
    simulstate = state;
    
    return true;
@@ -60,6 +61,7 @@ $.ajax
 		if(document.getElementById('orgDisplay') != null){
 			document.getElementById('orgDisplay').innerHTML = orgId;
 		}
+
 
 	},
 	error: function (xhr, ajaxOptions, thrownError) {
@@ -132,6 +134,10 @@ function storeInfos(id, state, lat,lon, name){
 
 	window.location = 'home.html';
 }
+
+
+
+
 
 
 

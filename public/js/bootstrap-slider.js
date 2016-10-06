@@ -1609,13 +1609,8 @@
 
 // Without JQuery
 // Without JQuery
-var slider1 = new Slider("#ex1", {
-	formatter: function(value) {
-		document.getElementById('value_slider1').innerHTML = value +" %";
-		return 'Current value: ' + value;
-	}
-});
-var slider2 = new Slider("#ex2", {
+
+/*var slider2 = new Slider("#ex2", {
 	formatter: function(value) {
 		document.getElementById('value_slider2').innerHTML = value +" %";
 		return 'Current value: ' + value;
@@ -1626,13 +1621,20 @@ var slider3 = new Slider("#ex3", {
 		document.getElementById('value_slider3').innerHTML = value +" %";
 		return 'Current value: ' + value;
 	}
+});*/
+var slider4 = new Slider("#ex4", {
+	formatter: function(value) {
+		document.getElementById('duty').innerHTML = value +" %";
+		return 'Current value: ' + value;
+	}
 });
-$('.check_class1').on('change', function() {
-    $('.check_class1').not(this).prop('checked', false);  
-});
-$('.check_class2').on('change', function() {
+
+/*$('.check_class2').on('change', function() {
     $('.check_class2').not(this).prop('checked', false);  
 });
 $('.check_class3').on('change', function() {
     $('.check_class3').not(this).prop('checked', false);  
+});*/
+$('.check_class4').on('change', function() {
+    $('.check_class4').not(this).prop('checked', false);  
 });

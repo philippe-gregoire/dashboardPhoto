@@ -20,6 +20,7 @@ var cfenv = require('cfenv');
 
 var index = require('./routes/index');
 var ibmdb = require('ibm_db');
+
 var app = express();
 var http_host = (process.env.VCAP_APP_HOST || '0.0.0.0');
 var http_port = (process.env.VCAP_APP_PORT || 7000);

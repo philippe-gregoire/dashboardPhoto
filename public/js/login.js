@@ -20,9 +20,10 @@ var devices = [];
 var realtime;
 var simulstate ="realtime";
 
+
 $("[name='realtime-switch']").bootstrapSwitch('toggleDisabled',true,true);
 
-
+localStorage.clear();
 function validateForm() {
     api_key = document.forms["loginForm"]["api_key"].value;
     auth_token = document.forms["loginForm"]["auth_token"].value;

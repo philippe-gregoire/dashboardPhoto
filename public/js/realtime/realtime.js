@@ -11,7 +11,7 @@ var subscribeTopic = "";
 
 
 var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
-	console.log("simul: " + _simulstate);
+	//console.log("simul: " + _simulstate);
 	var hostname;
 	if(_simulstate == "realtime"){
 		var tabInfos = orgInfos.split(':');
@@ -25,7 +25,7 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 	var firstMessage = true;
 
 	
-	var client;
+
 	function startSimul(_simulstate) {
 		if (_simulstate == "day"){
 			if (document.getElementById('duty') != null)
@@ -156,9 +156,11 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 		
 		if(_simulstate == "realtime"){
 			client = new Messaging.Client(hostname, 8883,clientId);
+	
 			// Initialize the Realtime Graph
 			var rtGraph = new RealtimeGraph();
 			updateVal();
+
 			client.onMessageArrived = function(msg) {
 				var topic = msg.destinationName;
 				console.log("topic2: " + topic);
@@ -256,7 +258,7 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 
 	this.initialize();
 
-	var imageHTML = '<div class="iotdashboardtext">The selected device is not currently sending events to the Internet of Things Foundation</div><br><div class="iotdashboardtext">Select to view historical data or select a different device.</div> <img class="iotimagesMiddle" align="middle" alt="Chart" src="images/IOT_Icons_Thing02.svg">';
+	var imageHTML = '<div class="iotdashboardtext">The selected device is not currently sending events to the Watson Internet of Things Platform</div><br><img class="iotimagesMiddle" align="middle" alt="Chart" src="images/IOT_Icons_Thing02.svg">';
 }
 
 function init(){
@@ -267,10 +269,10 @@ function init(){
 	var state = localStorage.getItem("simulstate");
 	var deviceId = localStorage.getItem("deviceId");
 	if(state == "realtime"){
-		var realtime = new Realtime(apiKey, apiToken, state, deviceId );
+		var realtime = new Realtime(apiKey, apiToken, state, deviceId);
 		realtime.plotRealtimeGraph();
 	} else{
-		var realtime = new Realtime(apiKey, apiToken, state, deviceId );
+		var realtime = new Realtime(apiKey, apiToken, state, deviceId);
 	}
 	
 }

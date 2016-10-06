@@ -25,7 +25,7 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/bootstrap-slider.css" rel="stylesheet">
-
+    <link href="css/gauge.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -81,14 +81,15 @@
                                 <a href="environmental_airquality.html"><i class="fa fa-leaf"></i> Air Quality</a>
                             </li>
                         </ul>
-                    </li><li>
+                    </li>
+                    <!--<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#urban"><i class="fa fa-fw fa-arrows-v"></i> Urban<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="urban" class="collapse">
                             <li>
                                 <a href="urban_disturbancy.html"><i class="fa fa-volume-up"></i> Disturbancy</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -120,7 +121,10 @@
                             <div class="panel-body">
                                 <ol class="breadcrumb text-left">
                                     <li class="active " style="width: 180px">
-                                        <div class="col-lg-10"><i class="fa fa-binoculars"></i> Current Duty: </div><div class="col-lg-1" id="duty">70%</div>
+                                        <div class="col-lg-10"><i class="fa fa-binoculars"></i> Current Duty: 
+                                            <div  id="duty" class="huge"></div> 
+                                            <input id="ex4" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+                                        </div>
                                     </li>
                                 </ol>
                                 <ol class="breadcrumb text-left">
@@ -161,12 +165,12 @@
                                                     <div class="panel panel-green">
                                                         <div class="panel-heading">
                                                             <div class="row">
-                                                                <div class="col-xs-3">
-                                                                    <div id="dim3">Planned Dim: </div>
-                                                                </div>
-                                                                <div class="col-xs-9 text-right">
-                                                                    <div  id="value_slider1" class="huge"></div> 
-                                                                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
+                                                                <div class="col-md-9">
+                                                                    
+                                                                    <div class="col-md-12">
+                                                                        <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_1" data-percent="40" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -180,8 +184,8 @@
                                                                     <div id="pir3">Planned PIR: </div>
                                                                 </div>
                                                                 <div class="col-xs-3 text-left">
-                                                                    <input class="check_class1" id="pir_yes" type="radio" > Yes<br>
-                                                                    <input class="check_class1" id="pir_no" type="radio" checked> No<br>
+                                                                    <input class="check_class1" id="pir_yes" type="radio" disabled> Yes<br>
+                                                                    <input class="check_class1" id="pir_no" type="radio" checked disabled> No<br>
                                                                  </div>   
                                                             </div>
                                                         </div>
@@ -224,12 +228,12 @@
                                                     <div class="panel panel-green">
                                                         <div class="panel-heading">
                                                             <div class="row">
-                                                                <div class="col-xs-3">
-                                                                    <div id="dim3">Planned Dim: </div>
-                                                                </div>
-                                                                <div class="col-xs-9 text-right">
-                                                                    <div  id="value_slider2" class="huge"></div> 
-                                                                    <input id="ex2" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="90"/>
+                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
+                                                                <div class="col-md-9">
+                                                                    
+                                                                    <div class="col-md-12">
+                                                                        <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_2" data-percent="60" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -243,8 +247,8 @@
                                                                     <div id="pir3">Planned PIR: </div>
                                                                 </div>
                                                                 <div class="col-xs-3 text-left">
-                                                                    <input class="check_class2" id="pir_yes" type="radio" > Yes<br>
-                                                                    <input class="check_class2" id="pir_no" type="radio" checked> No<br>
+                                                                    <input class="check_class2" id="pir_yes" type="radio" disabled> Yes<br>
+                                                                    <input class="check_class2" id="pir_no" type="radio" checked disabled>  No<br>
                                                                  </div>   
                                                             </div>
                                                         </div>
@@ -287,12 +291,12 @@
                                                     <div class="panel panel-green">
                                                         <div class="panel-heading">
                                                             <div class="row">
-                                                                <div class="col-xs-3">
-                                                                    <div id="dim3">Planned Dim: </div>
-                                                                </div>
-                                                                <div class="col-xs-9 text-right">
-                                                                    <div  id="value_slider3" class="huge" ></div> 
-                                                                    <input id="ex3" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100"/>
+                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
+                                                                <div class="col-md-9">
+                                                                    
+                                                                    <div class="col-md-12">
+                                                                        <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_3" data-percent="100" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -306,8 +310,8 @@
                                                                     <div id="pir3">Planned PIR: </div>
                                                                 </div>
                                                                 <div class="col-xs-3 text-left">
-                                                                    <input class="check_class3" id="pir_yes" type="radio" > Yes<br>
-                                                                    <input class="check_class3" id="pir_no" type="radio" checked> No<br>
+                                                                    <input class="check_class3" id="pir_yes" type="radio" disabled> Yes<br>
+                                                                    <input class="check_class3" id="pir_no" type="radio" checked disabled> No<br>
                                                                  </div>   
                                                             </div>
                                                         </div>
@@ -380,12 +384,12 @@
                                             </ol>
                                             <div class="row">
                                                 <div class="col-xs-6 text-left">
-                                                    <div>15/02/2016: "Light dimed On.."</div>
-                                                    <div>12/02/2016: "PIR is On.."</div>
-                                                    <div>10/02/2016: "Light dimed On.."</div>
-                                                    <div>9/02/2016: "Light dimed On.."</div>
-                                                    <div>5/02/2016: "PIR is On.."</div>
-                                                    <div>2/02/2016: "Light dimed On.."</div>
+                                                    <div>15/09/2016: "Light dimed On.."</div>
+                                                    <div>12/09/2016: "PIR is On.."</div>
+                                                    <div>10/09/2016: "Light dimed On.."</div>
+                                                    <div>9/09/2016: "Light dimed On.."</div>
+                                                    <div>5/09/2016: "PIR is On.."</div>
+                                                    <div>2/09/2016: "Light dimed On.."</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -419,7 +423,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-   
     <script type= "text/javascript" src="js/d3/d3.v3.js"></script>
     <script type= "text/javascript" src="js/rickshaw/rickshaw.min.js"></script>
     <script type= "text/javascript" src="js/jquery.datetimepicker.min.js"></script>
@@ -434,6 +437,8 @@
     <script type= "text/javascript" src="js/weather.js"></script>
     <script type= "text/javascript" src="js/bootstrap-slider.js"></script>
     <script type= "text/javascript" src="js/menuHome.js"></script>
+    <script type= "text/javascript" src="js/jquery.AshAlom.gaugeMeter-2.0.0.min.js"></script>
+    <script type= "text/javascript" src="js/gauge_optim.js"></script>
 
 </body>
 
