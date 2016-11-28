@@ -20,7 +20,7 @@ This Node.js app demonstrates the Bluemix capabilities to create industry relate
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/cllebrun/dashboardPhoto.git)
 
 - Access the online code editor to update the app.js (at the end of the deployment, there is a "edit code button"): 
-    - with your own Weather Company data service credential: var weather_host =  "https://username:password.mybluemix.net";
+    - with your own Weather Company data service credential: var weather_host =  "https://username:password@twcservice.mybluemix.net";
     - with the right cloudant credentials, the instructor will give to you;
     - with the right watson conversation credentials, the instructor will give to you;
 
