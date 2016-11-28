@@ -29,7 +29,7 @@ This Node.js app demonstrates the Bluemix capabilities to create industry relate
 1. Connect to Bluemix:
     https://console.ng.bluemix.net
     Create a Weather Company data service if you do not have one already
-2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already
+2. Download and install the Cloud-foundry CLI tool if you haven't already : https://github.com/cloudfoundry/cli/releases
     
 3. Download the project from Git:
 - Browse https://github.com/cllebrun/dashboardPhoto.git
