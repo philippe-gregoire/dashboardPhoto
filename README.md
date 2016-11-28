@@ -1,19 +1,37 @@
-====================================
-Deploy the admin dashboard photocontroller V2 (Node.js app) on Bluemix.
-====================================
+============================================================
+Admin Dashboard Photocontroller V2 (Node.js app) on Bluemix.
+============================================================
+
+This Node.js app demonstrates the Bluemix capabilities to create industry related projects about Internet of Things, Analytics and cloud topics. In order to make this app working properly with the real device you will need either the lamp device or the DB credentials and the IoT service api key/token to access the data.
+
+# Before you begin
+
+- Create a Bluemix account
+        Sign up in Bluemix, or use an existing account. Your account must have available space for at least 1 app and 1 service.
+- To develop locally: Make sure that you have the following prerequisites installed:
+        The Node.js runtime (including the npm package manager)
+        The Cloud Foundry command-line client
+
+# Deploy automatically to Bluemix
+
+- firstable you need to create a Weather Company data service if you do not have one already
+
+- then deploy automatically: 
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/cllebrun/dashboardPhoto.git)
+
+- make the project a DevOps preoject and use the online code editor to update the app.js: 
+    - with your own Weather Company data service credential: var weather_host =  "https://username:password.mybluemix.net";
+    - with the right cloudant credentials, the instructor will give to you;
+    - with the right watson conversation credentials, the instructor will give to you;
+
+# Deploy manually to Bluemix
 
 1. Connect to Bluemix:
     https://console.ng.bluemix.net
-    Create a new node.js web app on Bluemix:
-        On the dashboard, click on "Create App"
-        Choose "Web" app
-        Choose the "SDK for Node.js" runtime
-        Click "Continue"
-        Give your application a name (it has to be unique)
-        Wait for your application to be started
-        Add the Weather Company Data for IBM service, restage.
+    Create a Weather Company data service if you do not have one already
+2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already
     
-2. Download the project from Git:
+3. Download the project from Git:
 - Browse https://github.com/cllebrun/dashboardPhoto.git
 
 - Click on "Download ZIP" on the right of the page
@@ -22,8 +40,12 @@ or
 - clone the project
 
 - Open the folder and the "manifest.yml" file and edit it to change the name and the host with the name you gave to the application you created on Bluemix.
+- open the app.js and make the following updates:
+    - with your own Weather Company data service credential: var weather_host =  "https://username:password.mybluemix.net";
+    - with the right cloudant credentials, the instructor will give to you;
+    - with the right watson conversation credentials, the instructor will give to you;
 
-3. Push the app to Bluemix
+4. Push the app to Bluemix
 - Open the Command prompt and locate to the project folder you have just unzipped. (with cd command)
 - Connect to Bluemix using command line (download CF CLI first: https://github.com/cloudfoundry/cli/releases):
 
@@ -43,19 +65,18 @@ or
     Visualize the data from the Urban Light data on your real-time dashbord app !
 
 
- Register your photocontroller device into our org and use the app
- or
- Register your photocontroller device into your org and customize the app before using it 
+# Install & Run locally
 
+- you will need to install node.js
+- from your project root download the libraries:
 
+    npm install
 
-====================================
-How to customize the app for your IoT org:
-====================================
+- start your project:
 
-====================================
-Other Customization:
-====================================
+    node app.js
+
+# Customization
 
 #### Realtime data: 
 

@@ -6,6 +6,8 @@
 * Contributors: CLEMENCE LEBRUN
 * IBM - Initial Contribution
 ********************************************************************************/
+require( 'dotenv' ).config( {silent: true} );
+
 var express = require('express');
 var path = require('path');
 var routes = require('./routes');
@@ -20,6 +22,24 @@ var cfenv = require('cfenv');
 
 var index = require('./routes/index');
 var ibmdb = require('ibm_db');
+var https = require('https');
+var db;
+var cloudant;
+
+var fileToUpload;
+
+var dbCredentials = {
+    dbName : 'optimz'
+};
+
+var Watson = require( 'watson-developer-cloud' ); // watson sdk
+// The following requires are needed for logging purposes
+var uuid = require( 'uuid' );
+var vcapServices = require( 'vcap_services' );
+var basicAuth = require( 'basic-auth-connect' );
+
+
+
 
 var app = express();
 var http_host = (process.env.VCAP_APP_HOST || '0.0.0.0');
@@ -47,9 +67,11 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
-var weather_host = appEnv.services["weatherinsights"]
-? appEnv.services["weatherinsights"][0].credentials.url // Insights for Weather credentials passed in
-: ""; // or copy your credentials url here for standalone
+//var weather_host = appEnv.services["weatherinsights"]
+//? appEnv.services["weatherinsights"][0].credentials.url // Insights for Weather credentials passed in
+// or copy your credentials url here for standalone
+var cloudant_host = "<cloudant_credentials>";
+var weather_host =  "<weather_credentials>"; 
 
 function weatherAPI(path, qs, done) {
     var url = weather_host + path;
@@ -108,12 +130,188 @@ app.get('/api/forecast/hourly', function(req, res) {
         }
     });
 });
+function getDB(path,qs, done) {
+    var url = cloudant_host + path +"/"+qs.deviceId;
+    console.log(url, qs);
+    request({
+        url: url,
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "Accept": "application/json"
+        },
+        
+    }, function(err, req, data) {
+        if (err) {
+            done(err);
+        } else {
+            if (req.statusCode >= 200 && req.statusCode < 400) {
+                try {
+                    done(null, JSON.parse(data));
+                } catch(e) {
+                    console.log(e);
+                    done(e);
+                }
+            } else {
+                console.log(err);
+                done({ message: req.statusCode, data: data });
+            }
+        }
+    });
+}
+app.get('/predict', function(req, res) {
+    getDB("/optim",{deviceId: req.query.deviceId},function(err, result) {
+        if (err) {
+            res.send(err).status(400);
+        } else {
+            res.json(result);
+        }
+    });
+});
+app.get('/status', function(req, res) {
+    getDB("/phcstatus",{deviceId: req.query.deviceId},function(err, result) {
+        if (err) {
+            res.send(err).status(400);
+        } else {
+            res.json(result);
+            console.log(result);
+        }
+    });
+});
+function postCommand(qs, done) {
+    var orgId = qs.orgId;
+    var deviceType = qs.deviceType;
+    var deviceID = qs.deviceId;
+    var cmdType = qs.cmdType;
+    var duty = parseInt(qs.duty);
+    var auth = qs.apiKey+":"+qs.apiToken+"@";
+    var url = "https://"+auth+orgId+".messaging.internetofthings.ibmcloud.com/api/v0002/application/types/"+deviceType+"/devices/"+deviceID+"/commands/"+cmdType;
+
+    request({
+        url: url,
+        method: "POST",
+        json: true,
+        body: { "PWMFreqDiv": 0,"PWMMode": 1, "PWMDuty": duty }
+        
+    }, function(err, req, data) {
+        if (err) {
+            done(err);
+        } else {
+            if (req.statusCode >= 200 && req.statusCode < 400) {
+                try {
+                    done(null, data);
+                } catch(e) {
+                    console.log("err " +e);
+                    done(e);
+                    
+                }
+            } else {
+                console.log(err);
+                done({ message: req.statusCode, data: data });
+            }
+        }
+    });
+}
+app.get('/cmdLight', function(req, res) {
+    postCommand({orgId: req.query.orgId, deviceType: req.query.deviceType, deviceId: req.query.deviceId, duty: req.query.duty, apiKey: req.query.apiKey, apiToken: req.query.apiToken, cmdType: "pwm"},function(err, result, data) {
+        if (err) {
+             console.log(err);
+            //res.send(err).status(400);
+        } else {
+            //res.send(result);
+            console.log("successful command");
+            res.send("successful command");
+        }
+    });
+});
+
+// Create the service wrapper
+var conversation = new Watson.conversation( {
+  username: '0fc0486b-c2e0-4da4-8123-f7c02fe1993c',
+  password: 'U6oDYFrzR3rN',
+  version: 'v1',
+  version_date: '2016-09-20'
+} );
+
+// Endpoint to be call from the client side
+app.post( '/WatsonApi/message', function(req, res) {
+  var workspace = '<WORKSPACE_ID>'; 
+  if ( !workspace || workspace === '<workspace-id>' ) {
+    return res.json( {
+      'output': {
+        'text': 'The app has not been configured with a <b>WORKSPACE_ID</b> environment variable. Please refer to the ' +
+        '<a href="https://github.com/watson-developer-cloud/conversation-simple">README</a> documentation on how to set this variable. <br>' +
+        'Once a workspace has been defined the intents may be imported from ' +
+        '<a href="https://github.com/watson-developer-cloud/conversation-simple/blob/master/training/car_workspace.json">here</a> in order to get a working application.'
+      }
+    } );
+  }
+  var payload = {
+    workspace_id: workspace,
+    context: {},
+    input: {}
+  };
+  if ( req.body ) {
+
+    if ( req.body.input ) {
+      payload.input = req.body.input;
+    }
+    if ( req.body.context ) {
+      // The client must maintain context/state
+      payload.context = req.body.context;
+    }
+  }
+
+  // Send the input to the conversation service
+  conversation.message( payload, function(err, data) {
+    if ( err ) {
+        console.log(err);
+      return res.status( err.code || 500 ).json( err );
+    }
+    return res.json( updateMessage( payload, data ) );
+  } );
+
+} );
+
+/**
+ * Updates the response text using the intent confidence
+ * @param  {Object} input The request to the Conversation service
+ * @param  {Object} response The response from the Conversation service
+ * @return {Object}          The response with the updated message
+ */
+function updateMessage(input, response) {
+  var responseText = null;
+  var id = null;
+  if ( !response.output ) {
+    response.output = {};
+  } else {
+    return response;
+  }
+  if ( response.intents && response.intents[0] ) {
+    var intent = response.intents[0];
+    // Depending on the confidence of the response the app can return different messages.
+    // The confidence will vary depending on how well the system is trained. The service will always try to assign
+    // a class/intent to the input. If the confidence is low, then it suggests the service is unsure of the
+    // user's intent . In these cases it is usually best to return a disambiguation message
+    // ('I did not understand your intent, please rephrase your question', etc..)
+    if ( intent.confidence >= 0.75 ) {
+      responseText = 'I understood your intent was ' + intent.intent;
+    } else if ( intent.confidence >= 0.5 ) {
+      responseText = 'I think your intent was ' + intent.intent;
+    } else {
+      responseText = 'I did not understand your intent';
+    }
+  }
+  response.output.text = responseText;
+
+  return response;
+}
 
 app.use('/',index);
 
 app.use(function(req, res, next) {
     if(req.session.api_key){
-        //console.log("OK apikey");
+
         res.redirect("/dashboard");
     }   
     else{
@@ -121,6 +319,9 @@ app.use(function(req, res, next) {
     }
         
 });
+
+
+
 
 var server = app.listen(app.get('port'), app.get('host'), function() {
   console.log('Express server listening on ' + server.address().address + ':' + server.address().port);
