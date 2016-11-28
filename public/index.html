@@ -80,10 +80,12 @@
                     <a><i class="fa fa-fw fa-arrows-v"></i> Simul Day <input  id="sd" type="checkbox" name="day_switch" unchecked data-size="mini"> </a>
                 </li>
                 <li>
-                    <a ><button id="bt" type="button" class="btn btn-info" >Cognos Report</button></a>
+                    <a id= "viewcognos"><button  id="bt" type="button" class="btn btn-info" ><i class="fa fa-external-link"></i> View Cognos Report</button></a>
+                    <a ><button onclick="window.open('/images/streetlight_cognos.mht')" id="bt" type="button" class="btn btn-info" ><i class="fa fa-download"></i> Download Cognos Report</button></a>
                 </li>
+
             </ul>
-            
+            <!--window.location + '/images/cognos.mht'-->
         </div>
     </nav>
     <div id="map"></div>
@@ -92,6 +94,7 @@
     <!-- Bootstrap Core JavaScript -->
 
     <script type= "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
     
     <script src="js/bootstrap.min.js"></script>
     

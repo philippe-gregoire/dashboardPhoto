@@ -23,19 +23,48 @@ var client;
 var selectedDevice="";
 var photocontrollerList = [];
 var client;
+//var device;
+//var photoDevices = [];
+
 
 //load the state : simulation day or simulation night or real time data
 function loadData() {
 	var state = localStorage.getItem('_simulstate');
 	if (!state) return false;
-   //localStorage.removeItem('_simulstate');
-   	//parses to Object the JSON string
-   //state = JSON.parse(state);
-	//do what you need with the Object
-   //console.log(state);
    simulstate = state;
    
    return true;
+}
+
+
+function getStatus(path,qs,done) {
+	var devicecidCall = qs.deviceC.clientId.split(':');
+
+    var deviceOneId = devicecidCall[3];
+   $.ajax({
+    url: path,
+    type: 'GET',
+    contentType:'application/json',
+    data: {deviceId: deviceOneId},
+      success: function(data) {
+        if (data.message == 400) {
+          try {
+            data.data = JSON.parse(data.data);
+          } catch(e) {
+        }
+        done(data);
+
+        } else {
+          done(null, data);
+          
+
+        }
+    },
+    error: function(xhr, textStatus, thrownError) {
+      done(textStatus);
+
+    }
+  });
 }
 
 
@@ -93,6 +122,35 @@ $.ajax
 				photocontrollerList.push(devices[d])
 				if((devices[d].metadata.lat != null) && (devices[d].metadata.lon != null)){
 					addDynamicMArker(devices[d]);
+					/*var tokens = devices[d].clientId.split(':');
+  					var deviceOneId = tokens[3];
+					console.log(deviceOneId);
+  					photoDevices.push(devices[d]);
+					getStatus("/status",{ deviceC: device }, function(err, data) {
+					    if (err) {
+					      console.log("Device not found: "+err.message);
+
+					    } else {
+					    	console.log("data :" +data);
+						    if(data.payload != null){
+					        	if(data.payload.Action != null){
+						        	if(data.payload.Action == 'Disconnect'){
+									    
+									    addDynamicMArker(device, false);
+									    console.log(data.payload.Action);
+									} else if(data.payload.Action == 'Connect'){
+									    
+									     addDynamicMArker(device, true);
+									     console.log(data.payload.Action);
+							        }
+							    }
+							} else{
+								addDynamicMArker(device, false);
+							}
+					    }
+
+					});*/
+
 				}
 			}
 		}
@@ -126,6 +184,7 @@ function storeInfos(id, state, lat,lon, name){
 	    localStorage.setItem("location_lat", lat);
 	    localStorage.setItem("location_lon", lon);
 	    localStorage.setItem("name", name);
+	    console.log(name);
 
 
 	} else {

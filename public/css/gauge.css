@@ -36,5 +36,15 @@
   color: #000;
   font-weight: 200;
   opacity: .8;
-  
+  font-size: .60em;
+}
+.center{
+  text-align:center;
+}
+
+.midNum{
+  font-size: 30px;
+}
+.roundborder{
+
 }

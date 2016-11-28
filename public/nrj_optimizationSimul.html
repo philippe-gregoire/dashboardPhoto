@@ -25,7 +25,7 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/bootstrap-slider.css" rel="stylesheet">
-
+    <link href="css/gauge.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -52,25 +52,25 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 </button>
-                <a class="navbar-brand" href="index.html"><i class="fa fa-arrow-left"></i> Connected Lamps Admin Map</a>
+                <a class="navbar-brand" href="dashboard.html"><i class="fa fa-arrow-left"></i> Connected Lamps Admin Map</a>
             </div>
             <ul class="nav nav-justified">
-                <li><a id="nameLamp" style="float: none;" href="homeSimul.html" class="navbar-brand"></a></li>
+                <li><a id="nameLamp" style="float: none;" href="home.html" class="navbar-brand"></a></li>
             </ul> 
                         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a id="nameHome" href="homeSimul.html"> </a>
+                        <a id="nameHome" href="home.html"> </a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#energy"><i class="fa fa-fw fa-arrows-v"></i> Photocontroller<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="energy" >
                             <li>
-                                <a href="nrj_productionSimul.html"><i class="fa fa-battery-half"></i> Production</a>
+                                <a href="nrj_production.html"><i class="fa fa-battery-half"></i> Production</a>
                             </li>
                             <li>
-                                <a href="nrj_optimizationSimul.html"><i class="fa fa-balance-scale"></i> Optimization</a>
+                                <a href="nrj_optimization.html"><i class="fa fa-balance-scale"></i> Optimization</a>
                             </li>
                         </ul>
                     </li>
@@ -78,15 +78,18 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#environmental"><i class="fa fa-fw fa-arrows-v"></i> Environmental<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="environmental" class="collapse">
                             <li>
-                                <a href="environmental_airqualitySimul.html"><i class="fa fa-leaf"></i> Air Quality</a>
+                                <a href="environmental_airquality.html"><i class="fa fa-leaf"></i> Air Quality</a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="conversation.html"><img src="images/watson.png" class="iconWatson"></img> <span class="textWatsonMenu">Watson Help</span></a>
                     </li>
                     <!--<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#urban"><i class="fa fa-fw fa-arrows-v"></i> Urban<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="urban" class="collapse">
                             <li>
-                                <a href="urban_disturbancySimul.html"><i class="fa fa-volume-up"></i> Disturbancy</a>
+                                <a href="urban_disturbancy.html"><i class="fa fa-volume-up"></i> Disturbancy</a>
                             </li>
                         </ul>
                     </li>-->
@@ -121,7 +124,14 @@
                             <div class="panel-body">
                                 <ol class="breadcrumb text-left">
                                     <li class="active " style="width: 180px">
-                                        <div class="col-lg-10"><i class="fa fa-binoculars"></i> Current Duty: </div><div class="col-lg-1" id="duty">70%</div>
+                                        <div class="col-md-12"><i class="fa fa-binoculars"></i> Current Duty: 
+                                            <div  id="duty" class="huge"></div> 
+                                            <input id="ex4" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value=""/>
+                                        </div>
+                                        </br>
+                                        <div class="col-md-12 ">
+                                            <button onclick= "validCommand()" type="button" class="btn btn-warning">Validate Command</button>
+                                        </div>
                                     </li>
                                 </ol>
                                 <ol class="breadcrumb text-left">
@@ -133,7 +143,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="row">
-                                                <div id="weather_daily1" class="col-lg-8 col-md-6 text-center">
+                                                <div id="weather_daily1" class="col-lg-6 col-md-6 text-center">
                                                     <div style="background-color:#5599C8; color: white" class="panel">
                                                         <div class="panel-heading">
                                                             <!-- daily display -->
@@ -158,36 +168,54 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 col-md-6 text-center">
-                                                    <div class="panel panel-green">
-                                                        <div class="panel-heading">
-                                                            <div class="row">
-                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
-                                                                <div class="col-md-9">
-                                                                    
-                                                                    <div class="col-md-12">
-                                                                        <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_1" data-percent="40" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-md-3"id="dim3">Planned Dim: </div>
+
+                                                                    <div class="col-md-9">
+                                                                        
+                                                                        <div class="col-md-12">
+                                                                            <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_1" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 text-center">
-                                                    <div class="panel panel-green">
-                                                        <div class="panel-heading">
-                                                            <div class="row">
-                                                                <div class="col-xs-9 text-left">
-                                                                    <div id="pir3">Planned PIR: </div>
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">Predicted Power: </div>
+
+                                                                    <div class="col-md-9 center midNum" id="power1">
+                                                                        
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-xs-3 text-left">
-                                                                    <input class="check_class1" id="pir_yes" type="radio" disabled> Yes<br>
-                                                                    <input class="check_class1" id="pir_no" type="radio" checked disabled> No<br>
-                                                                 </div>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-xs-9 text-left">
+                                                                        <div id="pir3">Planned Motion Sensor Mode: </div>
+                                                                    </div>
+                                                                    <div class="col-xs-3 text-left">
+                                                                        <input class="check_class1" id="pir_yes1" type="radio" disabled> Yes<br>
+                                                                        <input class="check_class1" id="pir_no1" type="radio" checked disabled> No<br>
+                                                                     </div>   
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +224,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="row">
-                                                <div id="weather_daily2" class="col-lg-8 col-md-6 text-center">
+                                                <div id="weather_daily2" class="col-lg-6 col-md-6 text-center">
                                                     <div style="background-color:#5599C8; color: white" class="panel">
                                                         <div class="panel-heading">
                                                             <!-- daily display -->
@@ -221,32 +249,49 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 col-md-6 text-center">
-                                                    <div class="panel panel-green">
-                                                        <div class="panel-heading">
-                                                            <div class="row">
-                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
-                                                                <div class="col-md-9">
-                                                                    
-                                                                    <div class="col-md-12">
-                                                                        <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_2" data-percent="60" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-md-3"id="dim3">Planned Dim: </div>
+
+                                                                    <div class="col-md-9">
+                                                                        
+                                                                        <div class="col-md-12">
+                                                                            <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_2" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 text-center">
-                                                    <div class="panel panel-green">
-                                                        <div class="panel-heading">
-                                                            <div class="row">
-                                                                <div class="col-xs-9 text-left">
-                                                                    <div id="pir3">Planned PIR: </div>
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">Predicted Power: </div>
+
+                                                                    <div class="col-md-9 center midNum" id="power2">
+                                                                        
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-xs-3 text-left">
-                                                                    <input class="check_class2" id="pir_yes" type="radio" disabled> Yes<br>
-                                                                    <input class="check_class2" id="pir_no" type="radio" checked disabled>  No<br>
-                                                                 </div>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-xs-9 text-left">
+                                                                        <div id="pir2">Planned Motion Sensor Mode: </div>
+                                                                    </div>
+                                                                    <div class="col-xs-3 text-left">
+                                                                        <input class="check_class1" id="pir_yes2" type="radio" disabled> Yes<br>
+                                                                        <input class="check_class1" id="pir_no2" type="radio" checked disabled> No<br>
+                                                                     </div>   
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -259,7 +304,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="row">
-                                                <div id="weather_daily3" class="col-lg-8 col-md-6 text-center">
+                                                <div id="weather_daily3" class="col-lg-6 col-md-6 text-center">
                                                     <div style="background-color:#5599C8; color: white" class="panel">
                                                         <div class="panel-heading">
                                                             <!-- daily display -->
@@ -284,32 +329,49 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 col-md-6 text-center">
-                                                    <div class="panel panel-green">
-                                                        <div class="panel-heading">
-                                                            <div class="row">
-                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
-                                                                <div class="col-md-9">
-                                                                    
-                                                                    <div class="col-md-12">
-                                                                        <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_3" data-percent="100" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-md-3"id="dim3">Planned Dim: </div>
+
+                                                                    <div class="col-md-9">
+                                                                        
+                                                                        <div class="col-md-12">
+                                                                            <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_3" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 text-center">
-                                                    <div class="panel panel-green">
-                                                        <div class="panel-heading">
-                                                            <div class="row">
-                                                                <div class="col-xs-9 text-left">
-                                                                    <div id="pir3">Planned PIR: </div>
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">Predicted Power: </div>
+
+                                                                    <div class="col-md-9 center midNum" id="power3">
+                                                                        
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-xs-3 text-left">
-                                                                    <input class="check_class3" id="pir_yes" type="radio" disabled> Yes<br>
-                                                                    <input class="check_class3" id="pir_no" type="radio" checked disabled> No<br>
-                                                                 </div>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 text-center">
+                                                        <div class="panel panel-green">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-xs-9 text-left">
+                                                                        <div id="pir3">Planned Motion Sensor Mode: </div>
+                                                                    </div>
+                                                                    <div class="col-xs-3 text-left">
+                                                                        <input class="check_class1" id="pir_yes3" type="radio" disabled> Yes<br>
+                                                                        <input class="check_class1" id="pir_no3" type="radio" checked disabled> No<br>
+                                                                     </div>   
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -360,8 +422,8 @@
                                                                     <i class="fa fa-group fa-5x"></i>
                                                                 </div>
                                                                 <div class="col-xs-9 text-right">
-                                                                    <div  class="huge">1</div>
-                                                                    <div># PIR On</div>
+                                                                    <div  class="huge">3</div>
+                                                                    <div># Motion sensor On</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -425,15 +487,12 @@
     <script type= "text/javascript" src="js/rickshaw/rickshaw.min.js"></script>
     <script type= "text/javascript" src="js/jquery.datetimepicker.min.js"></script>
     <script type= "text/javascript" src="js/rickshaw/extensions.js"></script>
-    <!--<script type= "text/javascript" src="js/realtime/mqttws31.js"></script>
-    <script type= "text/javascript" src="js/realtime/realtime.js"></script>
-    <script type= "text/javascript" src="js/realtime/realtimeGraph.js"></script>
-    <script type= "text/javascript" src="js/historian/historian.js"></script>
-    <script type= "text/javascript" src="js/historian/historianGraph.js"></script>-->
     <script type= "text/javascript" src="js/generalSimul.js"></script>
     <script type= "text/javascript" src="js/weather.js"></script>
     <script type= "text/javascript" src="js/bootstrap-slider.js"></script>
     <script type= "text/javascript" src="js/menuHome.js"></script>
+    <script type= "text/javascript" src="js/jquery.AshAlom.gaugeMeter-2.0.0.min.js"></script>
+    <script type= "text/javascript" src="js/gauge_optim.js"></script>
     <script>simul()</script>
 
 </body>

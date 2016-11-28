@@ -1622,19 +1622,7 @@ var slider3 = new Slider("#ex3", {
 		return 'Current value: ' + value;
 	}
 });*/
-var slider4 = new Slider("#ex4", {
-	formatter: function(value) {
-		document.getElementById('duty').innerHTML = value +" %";
-		return 'Current value: ' + value;
-	}
-});
-
-/*$('.check_class2').on('change', function() {
-    $('.check_class2').not(this).prop('checked', false);  
-});
-$('.check_class3').on('change', function() {
-    $('.check_class3').not(this).prop('checked', false);  
+/*$("#ex4").slider({
+	 // Slider will instantiate showing 8.12 due to specified precision
 });*/
-$('.check_class4').on('change', function() {
-    $('.check_class4').not(this).prop('checked', false);  
-});
+

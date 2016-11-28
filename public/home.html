@@ -82,6 +82,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="conversation.html"><img src="images/watson.png" class="iconWatson"></img> <span class="textWatsonMenu">Watson Help</span></a>
+                    </li>
                     <!--<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#urban"><i class="fa fa-fw fa-arrows-v"></i> Urban<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="urban" class="collapse">
@@ -134,8 +137,8 @@
                                                                     <input id="state_charging" type="radio" disabled> Charging<br>
                                                                 </br>
                                                                     <input id="state_light" type="radio" disabled> Light<br>
-                                                                </br>
-                                                                    <input id="state_power" type="radio" disabled> Power<br>
+                                                                <!--</br>
+                                                                    <input id="state_power" type="radio" disabled> Power<br>-->
                                                                 </br>
                                                                     <input id="state_low" type="radio" disabled> Low Battery<br>
                                                                 </br>
@@ -168,8 +171,8 @@
                                                                     <i class="fa fa-group fa-2x"></i>
                                                                 </div>
                                                                 <div class="col-xs-9 text-right">
-                                                                    <div class="huge">NO</div>
-                                                                    <div>Current PIR</div>
+                                                                    <div id="motionsensormode" class="huge">NO</div>
+                                                                    <div>Mode Motion Sensor</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -212,7 +215,7 @@
                                                                     </div>
                                                                     <div class="col-xs-9 text-right">
                                                                         <div id= "intensity" class="huge"></div>
-                                                                    <div>Intensity Photo (mA)</div>
+                                                                    <div>Intensity Photo (A)</div>
                                                                 </div>
                                                             </div>
                                                         </div>

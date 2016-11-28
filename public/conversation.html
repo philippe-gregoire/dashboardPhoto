@@ -1,0 +1,192 @@
+<!--*******************************************************************************
+* Copyright (c) 2016 IBM Corporation and other Contributors.
+*
+* All rights reserved. 
+*
+* Contributors: CLEMENCE LEBRUN
+* IBM - Initial Contribution
+*******************************************************************************/-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Connected Lamp Poles</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/bootstrap-slider.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body onload="init()">
+
+    <div id="wrapper">
+
+        
+            <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                </button>
+                <a class="navbar-brand" href="dashboard.html"><i class="fa fa-arrow-left"></i> Connected Lamps Admin Map</a>
+            </div>
+            <ul class="nav nav-justified">
+                <li><a id="nameLamp" style="float: none;" href="home.html" class="navbar-brand"></a></li>
+            </ul> 
+                        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a id="nameHome" href="home.html"> </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#energy"><i class="fa fa-fw fa-arrows-v"></i> Photocontroller<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="energy" >
+                            <li>
+                                <a href="nrj_production.html"><i class="fa fa-battery-half"></i> Production</a>
+                            </li>
+                            <li>
+                                <a href="nrj_optimization.html"><i class="fa fa-balance-scale"></i> Optimization</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#environmental"><i class="fa fa-fw fa-arrows-v"></i> Environmental<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="environmental" class="collapse">
+                            <li>
+                                <a href="environmental_airquality.html"><i class="fa fa-leaf"></i> Air Quality</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="conversation.html"><img src="images/watson.png" class="iconWatson"></img> <span class="textWatsonMenu">Watson Help</span></a>
+                    </li>
+                    <!--<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#urban"><i class="fa fa-fw fa-arrows-v"></i> Urban<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="urban" class="collapse">
+                            <li>
+                                <a href="urban_disturbancy.html"><i class="fa fa-volume-up"></i> Disturbancy</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            <img src="images/watson.png" class="iconWatson"> Watson Help
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="home.html">Home</a>
+                            </li>
+                            <li class="active">
+                                 Watson Help
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--<div id="view-change-button" class="button" onclick="PayloadPanel.togglePanel(event, this)">
+                  <img class="option full" src="images/Chat Button.png">
+                  <img class="option not-full" src="images/Code Button.png">
+                </div>-->
+                <div id="contentParent" class="responsive-columns-wrapper">
+                  <div id="chat-column-holder" class="responsive-column content-column">
+                    <div class="chat-column">
+                      <div id="scrollingChat"></div>
+                      <label for="textInput" class="inputOutline">
+                        <input id="textInput" class="input responsive-column"
+                          placeholder="Type something" type="text"
+                          onkeydown="ConversationPanel.inputKeyDown(event, this)">
+                      </label>
+                    </div>
+                  </div>
+                  <!--<div id="payload-column" class="fixed-column content-column">
+                    <div id="payload-initial-message">
+                      Type something to see the output
+                    </div>
+                    <div id="payload-request" class="payload"></div>
+                    <div id="payload-response" class="payload"></div>
+                  </div>-->
+                </div>
+
+                
+            
+                
+
+                <!-- /.row -->
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script type= "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type= "text/javascript" src="js/d3/d3.v3.js"></script>
+    <script type= "text/javascript" src="js/rickshaw/rickshaw.min.js"></script>
+    <script type= "text/javascript" src="js/jquery.datetimepicker.min.js"></script>
+    <script type= "text/javascript" src="js/rickshaw/extensions.js"></script>
+    
+    <script type= "text/javascript" src="js/realtime/mqttws31.js"></script>
+        
+    <script type= "text/javascript" src="js/realtime/realtimeGraph.js"></script>
+    <script type= "text/javascript" src="js/realtime/realtime.js"></script>
+    
+    <script type= "text/javascript" src="js/historian/historian.js"></script>
+    <script type= "text/javascript" src="js/historian/historianGraph.js"></script>
+    <!--<script type= "text/javascript" src="js/uicontroller.js"></script>-->
+      <script src="js/common.js"></script>
+      <script src="js/api.js"></script>
+      <script src="js/conversation.js"></script>
+      <!--<script src="js/payload.js"></script>-->
+      <script src="js/global.js"></script>
+   
+    <script type= "text/javascript" src="js/menuHome.js"></script>
+    <script type= "text/javascript" src="js/jquery.AshAlom.gaugeMeter-2.0.0.min.js"></script>
+
+
+</body>
+
+</html>

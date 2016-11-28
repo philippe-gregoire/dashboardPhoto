@@ -241,3 +241,11 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+.iconWatson{
+    width:30px;
+    height:30px;
+    margin-right: 5px;
+}
+.textWatsonMenu{
+    vertical-align: bottom;
+}

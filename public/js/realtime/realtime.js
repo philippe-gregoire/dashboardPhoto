@@ -28,8 +28,12 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 
 	function startSimul(_simulstate) {
 		if (_simulstate == "day"){
-			if (document.getElementById('duty') != null)
-				document.getElementById('duty').innerHTML = " 30%";
+			
+			if (document.getElementById('duty') != null){
+				document.getElementById('duty').innerHTML = 30 +"%";
+				localStorage.setItem('PWMDuty', 30);
+				//updateValueFromDuty(30);
+			}
 			if (document.getElementById('state_') != null)
 				document.getElementById('state_').innerHTML = " Simulation DAY";
 			if (document.getElementById('loudness') != null)
@@ -83,11 +87,17 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 				document.getElementById('current_dim').innerHTML = "100 %";
 			if(document.getElementById('charge_perc') != null )	
 				document.getElementById('charge_perc').innerHTML = "95 %";
+			if(document.getElementById('charge') != null )	
+				document.getElementById('charge').innerHTML = "95 %";
 				
 
 		} else if (_simulstate == "night"){
-			if (document.getElementById('duty') != null)
-				document.getElementById('duty').innerHTML = " 70%";
+			if (document.getElementById('duty') != null){
+				document.getElementById('duty').innerHTML = 100 +"%";
+				localStorage.setItem('PWMDuty', 100);
+				//updateValueFromDuty(100);
+			}
+				
 			if(document.getElementById('efficiency') != null){
 				document.getElementById('efficiency').innerHTML = 0+" %";
 			}
@@ -116,8 +126,6 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 				document.getElementById('intensity').innerHTML = 0;
 			if (document.getElementById('voltage') != null)
 				document.getElementById('voltage').innerHTML = 5;
-			if (document.getElementById('voltage_b') != null)
-				document.getElementById('voltage_b').innerHTML = 5;
 			if (document.getElementById('power_s') != null)
 				document.getElementById('power_s').innerHTML = 0;
 			if (document.getElementById('motion-text') != null){
@@ -129,7 +137,9 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 			if(document.getElementById('state_charging') != null){
 				if(document.getElementById('state_light') != null){
 					document.getElementById('state_light').checked = true;
-					document.getElementById('state_power').checked = true;
+					if(document.getElementById('state_power') != null){
+						document.getElementById('state_power').checked = true;
+					}
 					document.getElementById('state_charging').checked = false;
 				}
 			}	
@@ -141,6 +151,8 @@ var Realtime = function(api_key, auth_token, _simulstate, orgInfos) {
 				document.getElementById('current_dim').innerHTML = "100 %";
 			if(document.getElementById('charge_perc') != null )	
 				document.getElementById('charge_perc').innerHTML = "25 %";
+			if(document.getElementById('charge') != null )	
+				document.getElementById('charge').innerHTML = "25 %";
 
 
 		} else if (_simulstate == "nothing"){

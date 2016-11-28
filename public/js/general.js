@@ -17,9 +17,10 @@ var imageLightOff;
 var simulstate =null;
 var map;
 
+
 var initMap = function(){
   
-  var myLatLngCenter = {lat: 41.121054, lng: -30.763709};
+  var myLatLngCenter = {lat: 48, lng: -66};
   var myLatLngMalaga = {lat: 36.7213, lng: -4.4214};
   var myLatLngDublin = {lat: 53.3498, lng: -6.2603};
   var myLatLngVegas = {lat: 36.0906428, lng: -115.1812648};
@@ -49,6 +50,13 @@ var initMap = function(){
     null,
     new google.maps.Size(25, 25) // size
   );
+  imageLightRealtimeConnected = new google.maps.MarkerImage(
+    'images/light_realtime_connected.png', 
+    null,
+    null,
+    null,
+    new google.maps.Size(25, 25) // size
+  );
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 3,
@@ -66,7 +74,8 @@ var initMap = function(){
   var nameMalaga = 'Malaga Connected Lamp';
   var lat_malaga = myLatLngMalaga.lat;
   var lon_malaga = myLatLngMalaga.lng;
-  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">Malaga Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_malaga+ '\', \'' + lon_malaga + '\', \'' + nameMalaga + '\')">DASHBOARD</button></p></div></div>';
+  var deviceMalaga = "d:3ru070:PhotocontrollerV2:Malaga";
+  var contentStringM = '<div id="content"><h4 id="firstHeading" class="firstHeading">Malaga Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceMalaga+ '\', ' + null +', '+'\'' + lat_malaga+ '\', \'' + lon_malaga + '\', \'' + nameMalaga + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowM = new google.maps.InfoWindow({
       content: contentStringM
@@ -97,7 +106,8 @@ var initMap = function(){
   var nameDublin = 'Dublin Connected Lamp';
   var lat_dublin = myLatLngDublin.lat;
   var lon_dublin = myLatLngDublin.lng;
-  var contentStringB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Dublin Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_dublin+ '\', \'' + lon_dublin + '\', \'' + nameDublin + '\')">DASHBOARD</button></p></div></div>';
+  var deviceDublin = "d:3ru070:PhotocontrollerV2:Dublin";
+  var contentStringB = '<div id="content"><h4 id="firstHeading" class="firstHeading">Dublin Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceDublin+ '\', ' + null +', '+'\'' + lat_dublin+ '\', \'' + lon_dublin + '\', \'' + nameDublin + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowB = new google.maps.InfoWindow({
       content: contentStringB
@@ -125,10 +135,11 @@ var initMap = function(){
     map: map,
     title: 'New-York Connected Lamp'
   });
-  var nameNewYork= 'New-York Connected Lamp';
+  var nameNY = 'New-York Connected Lamp';
   var lat_ny = myLatLngNY.lat;
   var lon_ny = myLatLngNY.lng;
-  var contentStringMB = '<div id="content"><h4 id="firstHeading" class="firstHeading">New-York Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_ny+ '\', \'' + lon_ny + '\', \'' + '\', \'' + nameNewYork + '\')">DASHBOARD</button></p></div></div>';
+  var deviceNY = "d:3ru070:PhotocontrollerV2:New_York";
+  var contentStringMB = '<div id="content"><h4 id="firstHeading" class="firstHeading">New York Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceNY+ '\', ' + null +', '+'\'' + lat_ny+ '\', \'' + lon_ny + '\', \'' + nameNY + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowMB = new google.maps.InfoWindow({
       content: contentStringMB
@@ -159,7 +170,8 @@ var initMap = function(){
   var nameMoscow = 'Moscow Connected Lamp';
   var lat_moscow = myLatLngMoscow.lat;
   var lon_moscow = myLatLngMoscow.lng;
-  var contentStringS = '<div id="content"><h4 id="firstHeading" class="firstHeading">Moscow Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(' + null+ ', ' + null +', '+'\'' + lat_moscow+ '\', \'' + lon_moscow + '\', \'' + nameMoscow + '\')">DASHBOARD</button></p></div></div>';
+  var deviceMoscow = "d:3ru070:PhotocontrollerV2:Moscow";
+  var contentStringS = '<div id="content"><h4 id="firstHeading" class="firstHeading">Moscow Connected Lamp</h4><div id="street"></div></br><div id="bodyContent"><p><b>Description: </b>Cognitive Street Light</p><p><b>Manufacturer: </b>None</p><p><b>Mode: </b>Simulation</p><p><button  class="btn btn-primary btn-md" onclick="storeInfos(\'' + deviceMoscow+ '\', ' + null +', '+'\'' + lat_moscow+ '\', \'' + lon_moscow + '\', \'' + nameMoscow + '\')">DASHBOARD</button></p></div></div>';
 
   var infoWindowS = new google.maps.InfoWindow({
       content: contentStringS
@@ -293,16 +305,22 @@ function saveState() {
 function addDynamicMArker(device) {
   var lat = device.metadata.lat;
   var lon = device.metadata.lon;
+  var realtimeIcon = imageLightRealtime;
   var deviceId = device.clientId;
   var deviceTitle = device.deviceInfo.descriptiveLocation;
   var deviceManufacturer = device.deviceInfo.manufacturer;
   var deviceModel = device.deviceInfo.model;
   var deviceDesc = device.deviceInfo.description;
   var dynamicCoor = {lat: lat, lng: lon};
-  // mirage
+ 
+  /*if(status == true){
+    realtimeIcon = imageLightRealtimeConnected;
+  } else{
+    realtimeIcon = imageLightRealtime;
+  }*/
   var dynamicMarker = new google.maps.Marker({
     position: dynamicCoor,
-    icon: imageLightRealtime,
+    icon: realtimeIcon,
     map: map,
     title: deviceTitle
   });
@@ -328,5 +346,8 @@ function addDynamicMArker(device) {
   });
 }
 
-
-
+var host = window.location.hostname;
+var port = window.location.port;
+var url = "unmht://"+host+".unmht:"+port+"/http.5/images/streetlight_cognos.mht/";
+console.log(url);
+$('a[id="viewcognos"]').attr('href',url);
