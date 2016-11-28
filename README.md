@@ -41,7 +41,7 @@ or
 
 - Open the folder and the "manifest.yml" file and edit it to change the name and the host with the name you gave to the application you created on Bluemix.
 - open the app.js and make the following updates:
-    - with your own Weather Company data service credential: var weather_host =  "https://username:password.mybluemix.net";
+    - with your own Weather Company data service credential: var weather_host =  "https://username:password@twcservice.mybluemix.net";
     - with the right cloudant credentials, the instructor will give to you;
     - with the right watson conversation credentials, the instructor will give to you;
 
