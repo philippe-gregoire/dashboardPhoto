@@ -53,6 +53,23 @@ function validCommand(){
   inputDuty = document.getElementById('duty').innerHTML;
 }
 
+function emergency(){
+  var l = document.getElementById('duty').innerHTML.length;
+  var valDuty =  5;
+  if (simulstate == "realtime"){
+    sendCommandLight("/cmdBlink",{orgId: org_id, deviceType: device_type, deviceId: device_id, duty:  valDuty, apiKey: apiKey, apiToken: apiToken}, function(err, data) {
+      if (err) {
+        console.log("Error non valid command: "+err);
+      } else {
+          console.log("Ok valid command" );
+      }
+      console.log(data);
+    });
+  }
+  
+  inputDuty = document.getElementById('duty').innerHTML;
+}
+
 function getPredict(path,qs,done) {
    $.ajax({
 		url: path,

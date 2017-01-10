@@ -8,7 +8,7 @@
 }
 
 .GaugeMeter SPAN, .GaugeMeter B {
-  width: 80%;
+  width: 100%;
   height: 100%;
   position: Absolute;
   display: Inline-Block;
@@ -47,4 +47,12 @@
 }
 .roundborder{
 
+}
+.button-duty-cmd{
+  margin-top: 10px;
+}
+.button-duty-alert{
+  height: 110px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

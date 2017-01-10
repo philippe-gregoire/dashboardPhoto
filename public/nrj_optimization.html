@@ -122,178 +122,28 @@
                     <div class="col-lg-12 text-center">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <ol class="breadcrumb text-left">
-                                    <li class="active " style="width: 180px">
-                                        <div class="col-md-12"><i class="fa fa-binoculars"></i> Current Duty: 
-                                            <div  id="duty" class="huge"></div> 
-                                            <input id="ex4" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value=""/>
-                                        </div>
-                                        </br>
-                                        <div class="col-md-12 ">
-                                            <button onclick= "validCommand()" type="button" class="btn btn-warning">Validate Command</button>
-                                        </div>
-                                    </li>
-                                </ol>
-                                <ol class="breadcrumb text-left">
-                                    <li class="active" >
-                                        <div class="col-lg-12"><i class="fa fa-calendar"></i> Prediction (3 days)</div>
-                                    </li>
-                                </ol>
+                                
                                 <div class="col-lg-12 col-md-8 text-center">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
+                                            <ol class="breadcrumb text-left">
+                                                <li class="active " style="width: 180px">
+                                                    <div class="col-md-12"><i class="fa fa-binoculars"></i> Current Duty 
+                                                    </div>
+                                                </li>
+                                            </ol>
                                             <div class="row">
-                                                <div id="weather_daily1" class="col-lg-6 col-md-6 text-center">
-                                                    <div style="background-color:#5599C8; color: white" class="panel">
-                                                        <div class="panel-heading">
-                                                            <!-- daily display -->
-                                                            <div class="row">
-                                                                <div class="col-lg-12 col-md-6" >
-                                                                    <div id= "weather_day1" style="font-weight: bold; font-size: 30px"></div>
-                                                                </div>
-                                                                 <div class="col-lg-12 col-md-6">
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <img id="weather_icon1" vspace="10px" hspace="10px" width="50px" height="50px" />
-                                                                        </div>
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <div id= "weather_temp1" style="font-weight: bold"></div>
-                                                                        </div>
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <div id= "weather_desc1"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-6">
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-md-3"id="dim3">Planned Dim: </div>
-
-                                                                    <div class="col-md-9">
-                                                                        
-                                                                        <div class="col-md-12">
-                                                                            <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_1" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-md-3">Predicted Power: </div>
-
-                                                                    <div class="col-md-9 center midNum" id="power1">
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-xs-9 text-left">
-                                                                        <div id="pir3">Planned Motion Sensor Mode: </div>
-                                                                    </div>
-                                                                    <div class="col-xs-3 text-left">
-                                                                        <input class="check_class1" id="pir_yes1" type="radio" disabled> Yes<br>
-                                                                        <input class="check_class1" id="pir_no1" type="radio" checked disabled> No<br>
-                                                                     </div>   
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div  id="duty" class="huge"></div> 
+                                                    <input id="ex4" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value=""/>
+                                                    <div class="col-md-12">
+                                                        <button onclick= "validCommand()" type="button" class="btn btn-success button-duty-cmd" >Send a new light intensity command</button>
                                                     </div>
                                                 </div>
                                                 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-8 text-center">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div id="weather_daily2" class="col-lg-6 col-md-6 text-center">
-                                                    <div style="background-color:#5599C8; color: white" class="panel">
-                                                        <div class="panel-heading">
-                                                            <!-- daily display -->
-                                                            <div class="row">
-                                                                <div class="col-lg-12 col-md-6" >
-                                                                    <div id= "weather_day2" style="font-weight: bold; font-size: 30px"></div>
-                                                                </div>
-                                                                 <div class="col-lg-12 col-md-6">
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <img id="weather_icon2" vspace="10px" hspace="10px" width="50px" height="50px" />
-                                                                        </div>
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <div id= "weather_temp2" style="font-weight: bold"></div>
-                                                                        </div>
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <div id= "weather_desc2"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-6">
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-md-3"id="dim3">Planned Dim: </div>
-
-                                                                    <div class="col-md-9">
-                                                                        
-                                                                        <div class="col-md-12">
-                                                                            <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_2" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-md-3">Predicted Power: </div>
-
-                                                                    <div class="col-md-9 center midNum" id="power2">
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-xs-9 text-left">
-                                                                        <div id="pir2">Planned Motion Sensor Mode: </div>
-                                                                    </div>
-                                                                    <div class="col-xs-3 text-left">
-                                                                        <input class="check_class1" id="pir_yes2" type="radio" disabled> Yes<br>
-                                                                        <input class="check_class1" id="pir_no2" type="radio" checked disabled> No<br>
-                                                                     </div>   
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <button onclick= "emergency()" type="button" class="btn btn-danger button-duty-alert"> Send an emergency alert</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -303,25 +153,162 @@
                                 <div class="col-lg-12 col-md-8 text-center">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
-                                            <div class="row">
-                                                <div id="weather_daily3" class="col-lg-6 col-md-6 text-center">
-                                                    <div style="background-color:#5599C8; color: white" class="panel">
-                                                        <div class="panel-heading">
-                                                            <!-- daily display -->
-                                                            <div class="row">
-                                                                <div class="col-lg-12 col-md-6" >
-                                                                    <div id= "weather_day3" style="font-weight: bold; font-size: 30px"></div>
+                                            <ol class="breadcrumb text-left">
+                                                <li class="active" >
+                                                    <div class="col-lg-12"><i class="fa fa-calendar"></i> Prediction (3 days)</div>
+                                                </li>
+                                            </ol>
+                                            <div class="col-lg-12 col-md-8 text-center">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div id="weather_daily1" class="col-lg-6 col-md-6 text-center">
+                                                                <div style="background-color:#5599C8; color: white" class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <!-- daily display -->
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-6" >
+                                                                                <div id= "weather_day1" style="font-weight: bold; font-size: 30px"></div>
+                                                                            </div>
+                                                                             <div class="col-lg-12 col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <img id="weather_icon1" vspace="10px" hspace="10px" width="50px" height="50px" />
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <div id= "weather_temp1" style="font-weight: bold"></div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <div id= "weather_desc1"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                 <div class="col-lg-12 col-md-6">
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <img id="weather_icon3" vspace="10px" hspace="10px" width="50px" height="50px" />
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
+                                                                                <div class="col-md-9">
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="GaugeMeter" id="PreviewGaugeMeter_1" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <div id= "weather_temp3" style="font-weight: bold"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">Predicted Power: </div>
+
+                                                                                <div class="col-md-9 center midNum" id="power1">
+                                                                                    
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-lg-12 col-md-6">
-                                                                            <div id= "weather_desc3"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-9 text-left">
+                                                                                    <div id="pir3">Planned Motion Sensor Mode: </div>
+                                                                                </div>
+                                                                                <div class="col-xs-3 text-left">
+                                                                                    <input class="check_class1" id="pir_yes1" type="radio" disabled> Yes<br>
+                                                                                    <input class="check_class1" id="pir_no1" type="radio" checked disabled> No<br>
+                                                                                 </div>   
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-8 text-center">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div id="weather_daily2" class="col-lg-6 col-md-6 text-center">
+                                                                <div style="background-color:#5599C8; color: white" class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <!-- daily display -->
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-6" >
+                                                                                <div id= "weather_day2" style="font-weight: bold; font-size: 30px"></div>
+                                                                            </div>
+                                                                             <div class="col-lg-12 col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <img id="weather_icon2" vspace="10px" hspace="10px" width="50px" height="50px" />
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <div id= "weather_temp2" style="font-weight: bold"></div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <div id= "weather_desc2"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
+
+                                                                                <div class="col-md-9">
+                                                                                    
+                                                                                   
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="GaugeMeter" id="PreviewGaugeMeter_2" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">Predicted Power: </div>
+
+                                                                                <div class="col-md-9 center midNum" id="power2">
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-9 text-left">
+                                                                                    <div id="pir2">Planned Motion Sensor Mode: </div>
+                                                                                </div>
+                                                                                <div class="col-xs-3 text-left">
+                                                                                    <input class="check_class1" id="pir_yes2" type="radio" disabled> Yes<br>
+                                                                                    <input class="check_class1" id="pir_no2" type="radio" checked disabled> No<br>
+                                                                                 </div>   
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -329,48 +316,77 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-md-3"id="dim3">Planned Dim: </div>
-
-                                                                    <div class="col-md-9">
-                                                                        
-                                                                        <div class="col-md-12">
-                                                                            <div class="GaugeMeter col-md-12" id="PreviewGaugeMeter_3" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
-
+                                            </div>
+                                            <div class="col-lg-12 col-md-8 text-center">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div id="weather_daily3" class="col-lg-6 col-md-6 text-center">
+                                                                <div style="background-color:#5599C8; color: white" class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <!-- daily display -->
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-6" >
+                                                                                <div id= "weather_day3" style="font-weight: bold; font-size: 30px"></div>
+                                                                            </div>
+                                                                             <div class="col-lg-12 col-md-6">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <img id="weather_icon3" vspace="10px" hspace="10px" width="50px" height="50px" />
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <div id= "weather_temp3" style="font-weight: bold"></div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 col-md-6">
+                                                                                        <div id= "weather_desc3"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-md-3">Predicted Power: </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"id="dim3">Planned Dim: </div>
 
-                                                                    <div class="col-md-9 center midNum" id="power3">
-                                                                        
+                                                                                <div class="col-md-9">
+                                                                                    <div class="GaugeMeter" id="PreviewGaugeMeter_3" data-percent="" data-prepend="<font style='color:White'></font>" data-theme="White" data-back="RGBa(0,0,0,.1)" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="2" data-label="%" data-label_color="#FFF"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 text-center">
-                                                        <div class="panel panel-green">
-                                                            <div class="panel-heading">
-                                                                <div class="row">
-                                                                    <div class="col-xs-9 text-left">
-                                                                        <div id="pir3">Planned Motion Sensor Mode: </div>
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">Predicted Power: </div>
+
+                                                                                <div class="col-md-9 center midNum" id="power3">
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-xs-3 text-left">
-                                                                        <input class="check_class1" id="pir_yes3" type="radio" disabled> Yes<br>
-                                                                        <input class="check_class1" id="pir_no3" type="radio" checked disabled> No<br>
-                                                                     </div>   
+                                                                </div>
+                                                                <div class="col-lg-12 col-md-12 text-center">
+                                                                    <div class="panel panel-yellow">
+                                                                        <div class="panel-heading">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-9 text-left">
+                                                                                    <div id="pir3">Planned Motion Sensor Mode: </div>
+                                                                                </div>
+                                                                                <div class="col-xs-3 text-left">
+                                                                                    <input class="check_class1" id="pir_yes3" type="radio" disabled> Yes<br>
+                                                                                    <input class="check_class1" id="pir_no3" type="radio" checked disabled> No<br>
+                                                                                 </div>   
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -378,7 +394,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>              
                                 </div>
                             </div>
                         </div>              
