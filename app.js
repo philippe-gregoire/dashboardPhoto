@@ -21,7 +21,7 @@ var request = require('request');
 var cfenv = require('cfenv');
 
 var index = require('./routes/index');
-var ibmdb = require('ibm_db');
+
 var https = require('https');
 var db;
 var cloudant;
@@ -104,6 +104,22 @@ function weatherAPI(path, qs, done) {
 }
 
 app.get('/api/forecast/daily', function(req, res) {
+    var geocode = (req.query.geocode || "34.53,84.50").split(",");
+    weatherAPI("/api/weather/v1/geocode/" + geocode[0] + "/" + geocode[1] + "/forecast/daily/10day.json", {
+        units: req.query.units || "m",
+        language: req.query.language || "en"
+    }, function(err, result) {
+        if (err) {
+            console.log(err);
+            res.send(err).status(400);
+        } else {
+            console.log("10 days Forecast");
+            res.json(result);
+        }
+    });
+});
+
+/*app.get('/api/forecast/daily', function(req, res) {
     weatherAPI("/api/weather/v2/forecast/daily/10day", {
         geocode: req.query.geocode || "34.53,84.50",
         units: req.query.units || "m",
@@ -115,7 +131,7 @@ app.get('/api/forecast/daily', function(req, res) {
             res.json(result);
         }
     });
-});
+});*/
 
 app.get('/api/forecast/hourly', function(req, res) {
     weatherAPI("/api/weather/v2/forecast/hourly/24hour", {
@@ -212,8 +228,54 @@ function postCommand(qs, done) {
         }
     });
 }
+function postBlink(qs, done) {
+    var orgId = qs.orgId;
+    var deviceType = qs.deviceType;
+    var deviceID = qs.deviceId;
+    var cmdType = qs.cmdType;
+    var duty = parseInt(qs.duty);
+    var auth = qs.apiKey+":"+qs.apiToken+"@";
+    var url = "https://"+auth+orgId+".messaging.internetofthings.ibmcloud.com/api/v0002/application/types/"+deviceType+"/devices/"+deviceID+"/commands/"+cmdType;
+
+    request({
+        url: url,
+        method: "POST",
+        json: true,
+        body: { "PWMFreqDiv": 5,"PWMMode": 1, "PWMDuty": duty }
+        
+    }, function(err, req, data) {
+        if (err) {
+            done(err);
+        } else {
+            if (req.statusCode >= 200 && req.statusCode < 400) {
+                try {
+                    done(null, data);
+                } catch(e) {
+                    console.log("err " +e);
+                    done(e);
+                    
+                }
+            } else {
+                console.log(err);
+                done({ message: req.statusCode, data: data });
+            }
+        }
+    });
+}
 app.get('/cmdLight', function(req, res) {
     postCommand({orgId: req.query.orgId, deviceType: req.query.deviceType, deviceId: req.query.deviceId, duty: req.query.duty, apiKey: req.query.apiKey, apiToken: req.query.apiToken, cmdType: "pwm"},function(err, result, data) {
+        if (err) {
+             console.log(err);
+            //res.send(err).status(400);
+        } else {
+            //res.send(result);
+            console.log("successful command");
+            res.send("successful command");
+        }
+    });
+});
+app.get('/cmdBlink', function(req, res) {
+    postBlink({orgId: req.query.orgId, deviceType: req.query.deviceType, deviceId: req.query.deviceId, duty: req.query.duty, apiKey: req.query.apiKey, apiToken: req.query.apiToken, cmdType: "pwm"},function(err, result, data) {
         if (err) {
              console.log(err);
             //res.send(err).status(400);
@@ -227,15 +289,15 @@ app.get('/cmdLight', function(req, res) {
 
 // Create the service wrapper
 var conversation = new Watson.conversation( {
-  username: '0fc0486b-c2e0-4da4-8123-f7c02fe1993c',
-  password: 'U6oDYFrzR3rN',
+  username: '',
+  password: '',
   version: 'v1',
   version_date: '2016-09-20'
 } );
 
 // Endpoint to be call from the client side
 app.post( '/WatsonApi/message', function(req, res) {
-  var workspace = '<WORKSPACE_ID>'; 
+  var workspace = ''; 
   if ( !workspace || workspace === '<workspace-id>' ) {
     return res.json( {
       'output': {
