@@ -1,17 +1,17 @@
 ---
-declared-services:
- conversation-service:
-   label: conversation
-   plan: free
+#declared-services:
+# conversation-service:
+#   label: conversation
+#   plan: free
 applications:
 - disk_quota: 1024M
-  host: dashboardAdminPhoto
-  name: dashboardAdminPhoto
+#  host: dashboardAdminPhoto
+#  name: dashboardAdminPhoto
   command: node app.js
   path: .
   domain: mybluemix.net
   instances: 1
-  memory: 128M
+#  memory: 128M
   env:
    NPM_CONFIG_PRODUCTION: false
    WORKSPACE_ID: 50fa2636-c6d9-4767-8083-f5107d5cd990
