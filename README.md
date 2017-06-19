@@ -1,4 +1,3 @@
-============================================================
 Admin Dashboard Photocontroller V2 (Node.js app) on Bluemix.
 ============================================================
 
@@ -13,13 +12,9 @@ This Node.js app demonstrates the Bluemix capabilities to create industry relate
         The Cloud Foundry command-line client
 
 # Deploy automatically to Bluemix
+[![Create Toolchain](https://github.com/amprasanna/images/blob/master/Toolchain.png)](https://console.ng.bluemix.net/devops/setup/deploy?repository=https://github.com/philippe-gregoire/dashboardPhoto)
 
-- firstable you need to create a Weather Company data service if you do not have one already
-
-- then deploy automatically: 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/cllebrun/dashboardPhoto.git)
-
-- Access the online code editor to update the app.js (at the end of the deployment, there is a "edit code button"): 
+- In your toolchain's Git, update the app.js to enter the required credentials
     - with your own Weather Company data service credential: var weather_host =  "https://username:password@twcservice.mybluemix.net";
     - with the right cloudant credentials, the instructor will give to you;
     - with the right watson conversation credentials, the instructor will give to you;
