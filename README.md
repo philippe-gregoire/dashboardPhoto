@@ -13,11 +13,11 @@ This Node.js app demonstrates the Bluemix capabilities to create industry relate
 
 # Deploy automatically to Bluemix
 [![Create Toolchain](https://github.com/amprasanna/images/blob/master/Toolchain.png)](https://console.ng.bluemix.net/devops/setup/deploy?repository=https://github.com/philippe-gregoire/dashboardPhoto)
+- Bind an instance of the Weather Company service to your application
 
 - In your toolchain's Git, update the app.js to enter the required credentials
-    - with your own Weather Company data service credential: var weather_host =  "https://username:password@twcservice.mybluemix.net";
-    - with the right cloudant credentials, the instructor will give to you;
-    - with the right watson conversation credentials, the instructor will give to you;
+    - Enter the Cloudant credentials of the historical database provided to you by the instructor
+    - Enter the Watson Conversation credentials provided to you by the instructor
 
 # Deploy manually to Bluemix
 
